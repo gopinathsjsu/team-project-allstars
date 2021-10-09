@@ -1,9 +1,0 @@
-APIs - input and output of API should be in JSON and should include error handling and validation of inputs.
-APIs can be demonstrated using a basic Web/mobile UI or through Postman.
-UI will be used by Customers and Airline employees.
-APIs should support following functionality:
-1. Manage your Mileage rewards account
-2. Search for flights and book travel
-3. Purchase seats
-4. Change/Cancel reservations
-5. Enrolling as a new customer
