@@ -2,11 +2,8 @@ const mongoose = require("mongoose");
 const { mongoDBURI } = require("./config");
 const mongoDbConnection = async () => {
   const options = {
-    poolSize: 10,
     useNewUrlParser: true,
-    useCreateIndex: true,
     useUnifiedTopology: true,
-    useFindAndModify: false,
   };
 
   try {
