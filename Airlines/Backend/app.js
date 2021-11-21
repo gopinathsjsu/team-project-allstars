@@ -6,6 +6,8 @@ var cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const passengerSignup = require("./routes/passenger/signup.js");
 const passengerLogin = require("./routes/passenger/login.js");
+const employeeSignup = require("./routes/employee/signup.js");
+const employeeLogin = require("./routes/employee/login.js");
 
 const { frontendURI } = require("./utils/config");
 app.use(express.static(__dirname + "public"));
@@ -34,5 +36,7 @@ app.use(function (req, res, next) {
 //adding routes
 app.use("/passenger/signup", passengerSignup);
 app.use("/passenger/login", passengerLogin);
+app.use("/employee/signup", employeeSignup);
+app.use("/employee/login", employeeLogin);
 
 module.exports = app;
