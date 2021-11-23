@@ -1,0 +1,31 @@
+UI :
+1) 2 Logins required
+
+Signup --> dashboard
+
+1) Signup Screen
+2) Login Screen
+
+Dashboard :
+3) search flight
+ https://www.united.com/en/us
+
+4) results of search flights with the matching criteria
+
+5) Booking window:
+A) select seat
+B) screen to accept traveller details
+C) booking confirmation 
+D) Results of booking
+
+6) User Profile:
+user profile
+Mileage points update
+
+7) Reservation Window:
+show list of reservations. 
+allow edit (change/cancel)
+
+Employee Login:
+1) add flights (empty form)
+2) form to update and cancel the flights (list of flights)
