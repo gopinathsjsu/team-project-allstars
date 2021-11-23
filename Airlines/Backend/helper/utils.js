@@ -1,6 +1,7 @@
 const passengerModel = require("../models/passengerModel");
 const employeeModel = require("../models/employeeModel");
 
+
 const checkIfEmailIsAlreadyUsedByPassenger = async (email) => {
   const passenger = await passengerModel.findOne({ email });
   if (passenger == null) {
@@ -9,6 +10,7 @@ const checkIfEmailIsAlreadyUsedByPassenger = async (email) => {
     return true;
   }
 };
+
 
 const checkIfEmailIsAlreadyUsedByEmployee = async (email) => {
   const employee = await employeeModel.findOne({ email });
@@ -19,6 +21,7 @@ const checkIfEmailIsAlreadyUsedByEmployee = async (email) => {
   }
 };
 
+
 const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
@@ -26,5 +29,6 @@ const capitalizeFirstLetter = (string) => {
 module.exports = {
   checkIfEmailIsAlreadyUsedByPassenger,
   checkIfEmailIsAlreadyUsedByEmployee,
+
   capitalizeFirstLetter,
 };
