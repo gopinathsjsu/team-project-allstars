@@ -10,15 +10,11 @@ class SearchDashBoard extends Component {
 							<h4>Book a flight</h4>
 						</div>
 
-						<div className="form-group border-bottom d-flex align-items-center justify-content-between flex-wrap">
+						<div className="form-group border-bottom d-flex align-items-center">
 							{" "}
 							<label className="option my-sm-0 my-2" />{" "}
 							<input type="radio" name="radio" checked />
-							Round Trip <span className="checkmark" />
-							<span />
-							<label /> <label className="option my-sm-0 my-2" />
-							<input type="radio" name="radio" />
-							One Way <span className="checkmark"></span> <label />
+							<label className="option my-sm-0 my-2" /> One Way{" "}
 						</div>
 						<div className="form-group d-sm-flex margin">
 							<div className="d-flex align-items-center flex-fill me-sm-1 my-sm-0 my-4 border-bottom position-relative">
@@ -59,14 +55,13 @@ class SearchDashBoard extends Component {
 								<div className="label" id="depart"></div>
 							</div>
 							<div className="d-flex align-items-center flex-fill ms-sm-1 my-sm-0 my-4 border-bottom position-relative">
-								<input
-									type="date"
-									required
-									id="arrivalDate"
-									name="arrivalDate"
-									placeholder="Return Date"
-									className="form-control"
-								/>
+								<select className="form-control" id="type" name="type">
+									<option value="" selected disabled hidden>
+										Select Booking type
+									</option>
+									<option value="economy">Economy</option>
+									<option value="business">Business</option>
+								</select>
 								<div className="label" id="return"></div>
 							</div>
 						</div>
