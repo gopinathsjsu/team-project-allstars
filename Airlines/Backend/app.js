@@ -10,6 +10,12 @@ const employeeSignup = require("./routes/employee/signup.js");
 const employeeLogin = require("./routes/employee/login.js");
 const flightSearch = require("./routes/flight/search.js");
 
+//Employee adding flight
+const employeeAddFlight = require("./routes/employee/add_flights.js");
+const employeeUpdateFlight = require("./routes/employee/update_flight.js");
+const employeeShowFlight = require("./routes/employee/show_flights.js");
+const employeeDeleteFlight = require("./routes/employee/delete_flight.js");
+
 const { frontendURI } = require("./utils/config");
 app.use(express.static(__dirname + "public"));
 app.use(express.json());
@@ -39,6 +45,12 @@ app.use("/passenger/signup", passengerSignup);
 app.use("/passenger/login", passengerLogin);
 app.use("/employee/signup", employeeSignup);
 app.use("/employee/login", employeeLogin);
+
+//Employee adding flight
+app.use("/employee/addFlights", employeeAddFlight);
+app.use("/employee/updateFlight",employeeUpdateFlight);
+app.use("/employee/showFlights",employeeShowFlight);
+app.use("/employee/deleteFlight", employeeDeleteFlight);
 app.use("/flight/search", flightSearch);
 
 module.exports = app;
