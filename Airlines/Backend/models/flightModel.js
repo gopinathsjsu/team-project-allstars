@@ -5,7 +5,8 @@ const flightSchema = new Schema(
   {
     flightName: { type: String, trim: true },
     departureFrom: { type: String, trim: true },
-    arrivalAt: { type: Date, trim: true, required: true },
+    arrivalAt: { type: String, trim: true, required: true },
+    flightStatus : { type: String, trim: true, required: true},
     arrivalDate: { type: Date, required: false },
     departureDate: { type: Date, trim: true, required: true },
     economySeatsCapacity: { type: Number },
