@@ -5,9 +5,14 @@ import Server from "../../webConfig";
 import { Redirect } from "react-router";
 import swal from "sweetalert";
 class SearchDashBoard extends Component {
-	handleChange = (e) => {
+	constructor(props) {
+		super(props);
+		this.state = {};
+	}
+
+	onChange = (e) => {
 		this.setState({
-			[e.target.name]: e.target.value,
+			[e.target.id]: e.target.value,
 		});
 	};
 
@@ -20,6 +25,7 @@ class SearchDashBoard extends Component {
 			type: this.state.type,
 			travellers: this.state.travellers,
 		};
+		console.log("search criteria: ", searchData);
 		axios.defaults.withCredentials = true;
 		axios
 			.post(`${Server}/flight/search`, searchData)
@@ -37,6 +43,7 @@ class SearchDashBoard extends Component {
 
 	render() {
 		let redirectVar = null;
+		console.log("this.state: " + this.state);
 		return (
 			<div className="main1">
 				{redirectVar}
@@ -118,6 +125,7 @@ class SearchDashBoard extends Component {
 								min="1"
 								placeholder="Traveller(s)"
 								className="form-control"
+								onChange={this.onChange}
 							/>
 							<div className="label" id="psngr"></div>{" "}
 							<span className="fas fa-users text-muted"></span>
