@@ -3,19 +3,29 @@ import "./App.css";
 import SigninPage from "./pages/signin";
 import SignUpPage from "./pages/signup";
 import DashBoardPage from "./pages/dashboard";
+import SearchResultsPage from "./pages/searchresults";
 import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
-	return (
-		<div className="App">
-			<Router>
-				<Switch>
-					<Route exact path="/signin" component={SigninPage}></Route>
-					<Route exact path="/signup" component={SignUpPage}></Route>
-					<Route exact path="/dashboard" component={DashBoardPage}></Route>
-				</Switch>
-			</Router>
-		</div>
-	);
+    return (
+        <div className="App">
+            <Router>
+                <Switch>
+                    <Route exact path="/signin" component={SigninPage}></Route>
+                    <Route exact path="/signup" component={SignUpPage}></Route>
+                    <Route
+                        exact
+                        path="/dashboard"
+                        component={DashBoardPage}
+                    ></Route>
+                    <Route
+                        exact
+                        path="/searchresults"
+                        component={SearchResultsPage}
+                    ></Route>
+                </Switch>
+            </Router>
+        </div>
+    );
 }
 
 export default App;
