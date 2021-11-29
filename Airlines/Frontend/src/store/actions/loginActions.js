@@ -6,8 +6,8 @@ import swal from "sweetalert";
 export const logIn = (credentials) => {
     Axios.defaults.withCredentials = true;
     return (dispatch, getState) => {
-        if (credentials.accountType === "Client") {
-            Axios.post(`${Server}/users/login`, {
+        if (credentials.accountType === "PASSENGER") {
+            Axios.post(`${Server}/passenger/login`, {
                 email: credentials.email,
                 password: credentials.password,
             })
@@ -35,8 +35,8 @@ export const logIn = (credentials) => {
                     );
                     dispatch({ type: "LOGIN_ERROR", err });
                 });
-        } else if (credentials.accountType === "Lawyer") {
-            Axios.post(`${Server}/lawyers/login`, {
+        } else if (credentials.accountType === "EMPLOYEE") {
+            Axios.post(`${Server}/employee/login`, {
                 email: credentials.email,
                 password: credentials.password,
             })
@@ -80,9 +80,9 @@ export const signOut = () => {
 export const signUp = (newAccount) => {
     Axios.defaults.withCredentials = true;
     return (dispatch, getState) => {
-        if (newAccount.accountType === "Client") {
-            Axios.post(`${Server}/users/signup`, {
-                name: newAccount.name,
+        if (newAccount.accountType === "PASSENGER") {
+            Axios.post(`${Server}/passenger/signup`, {
+                passengerName: newAccount.name,
                 email: newAccount.email,
                 password: newAccount.password,
             })
@@ -97,9 +97,9 @@ export const signUp = (newAccount) => {
                 .catch((err) => {
                     dispatch({ type: "SIGNUP_FAILED", err });
                 });
-        } else if (newAccount.accountType === "Lawyer") {
-            Axios.post(`${Server}/lawyers/signup`, {
-                name: newAccount.name,
+        } else if (newAccount.accountType === "EMPLOYEE") {
+            Axios.post(`${Server}/employee/signup`, {
+                employeeName: newAccount.name,
                 email: newAccount.email,
                 password: newAccount.password,
             })

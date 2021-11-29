@@ -5,7 +5,7 @@ import profile from "../../images/avatar-black.svg";
 import "./Signin.css";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { logIn } from "../../stores/actions/loginActions";
+import { logIn } from "../../store/actions/loginActions";
 import { Redirect } from "react-router-dom";
 import swal from "sweetalert";
 
@@ -43,24 +43,17 @@ class SignIn extends Component {
         if (loggedIn) {
             const accountType = user.type;
             localStorage.setItem("user_id", user._id);
-            localStorage.setItem("name", user.name);
+            // localStorage.setItem("name", user.name);
             localStorage.setItem("email", user.email);
             localStorage.setItem("token", user.token);
             localStorage.setItem("type", user.type);
-            if (accountType === "LAWYER") {
-                localStorage.setItem("isApproved", user.isApproved);
-                if (!user.isApproved) {
-                    swal(
-                        "",
-                        "You are not approved by admin. If you have updated your details for approval ,please wait for 1,2 business days. If not, please update your details for review",
-                        "warning"
-                    );
-                    return <Redirect to="/profile" />;
-                } else {
-                    return <Redirect to="/center" />;
-                }
-            } else if (accountType === "USER") {
-                return <Redirect to="/center" />;
+            if (accountType === "EMPLOYEE") {
+                localStorage.setItem("name", user.employeeName);
+				//localStorage.setItem("isApproved", user.isApproved);
+				return <Redirect to="/dashboard" />;
+            } else if (accountType === "PASSENGER") {
+                localStorage.setItem("name", user.passengerName);
+                return <Redirect to="/dashboard" />;
             }
         }
 
@@ -116,25 +109,25 @@ class SignIn extends Component {
                             <div class="radio">
                                 <input
                                     class="radio__input"
-                                    value="Client"
+                                    value="PASSENGER"
                                     type="radio"
                                     name="accountType"
                                     id="myRadio1"
                                     onChange={this.handleChange}
                                 />
                                 <label class="radio__label" htmlFor="myRadio1">
-                                    Client
+                                    Customer
                                 </label>
                                 <input
                                     class="radio__input"
-                                    value="Lawyer"
+                                    value="EMPLOYEE"
                                     type="radio"
                                     name="accountType"
                                     id="myRadio2"
                                     onChange={this.handleChange}
                                 />
                                 <label class="radio__label" htmlFor="myRadio2">
-                                    Lawyer
+                                    Airline Employee
                                 </label>
                             </div>
                             <input
@@ -143,7 +136,7 @@ class SignIn extends Component {
                                 value="Login"
                             />
                             <div>or</div>
-                            <Link className="register" to="/">
+                            <Link className="register" to="/signup">
                                 Register
                             </Link>
                             <div>
