@@ -8,13 +8,28 @@
     transform: translate(-50%, -50%);
 }
 
+#signin{
+    /* background-color: #212329; */
+    background-color: #333;
+}
 .home {
     margin-top: 15px;
     font-weight: bold;
-    color: #333;
+    color: white;
     font-size: 20px;
     z-index: 12;
     text-decoration: none;
+    font-size: 30px;
+}
+
+.home:hover {
+    margin-top: 15px;
+    font-weight: bold;
+    color: tomato;
+    font-size: 20px;
+    z-index: 12;
+    text-decoration: none;
+    font-size: 30px;
 }
 
 .wave {
@@ -63,12 +78,12 @@
     text-transform: uppercase;
     font-size: 2.6rem;
     margin: 15px 0;
-    color: #aaa;
+    color: #fff;
 }
 
 .login-form .input-div {
     padding: 5px 0;
-    border-bottom: 2px solid #d9d9d9;
+    border-bottom: 2px solid white;
     grid-template-columns: 7% 93%;
     margin: 25px 0;
     position: relative;
@@ -80,10 +95,11 @@
 }
 
 .i {
-    color: #d9d9d9;
+    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
 
 .i i {
@@ -97,7 +113,7 @@
 
 .input-div > div > input {
     font-size: 1.2rem;
-    color: #555;
+    color: white;
     font-family: "poppins", sans-serif;
     position: absolute;
     left: 0;
@@ -118,28 +134,36 @@
     margin: 1rem 0;
     cursor: pointer;
     transition: 0.5s;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     color: #fff;
     font-family: "Poppins", sans-serif;
     text-transform: uppercase;
     display: block;
     outline: none;
     border: none;
-    background-image: linear-gradient(to right, #32be8f, #38d39f, #32be8f);
+    background-image: linear-gradient(to right, #006157, #11c5b3);
     background-size: 200%;
     width: 100%;
     height: 50px;
-    border-radius: 25px;
+    border-radius: 50px;
 }
 .btn:hover {
     background-position: right;
+    color: white;
+    background-color: tomato;
 }
 
 .register {
     text-decoration: none;
-    font-size: 17px;
+    font-size: 20px;
+    color: white;
 }
 
+.register:hover {
+    text-decoration: none;
+    font-size: 25px;
+    color: tomato;
+}
 @media screen and (max-width: 1050px) {
     .main-container {
         grid-gap: 5rem;
@@ -194,15 +218,15 @@
     padding: 8px 14px;
     font-size: 14px;
     color: #ffffff;
-    background: #009578;
+    background: #009688;
     cursor: pointer;
     transition: background 0.1s;
 }
 
 .radio__label:not(:last-of-type) {
-    border-right: 1px solid #006b56;
+    border-right: 1px solid #004134;
 }
 
 .radio__input:checked + .radio__label {
-    background: #006b56;
+    background: #004134;
 }

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import bg from "../../images/wave.png";
-import judge from "../../images/judge-black.svg";
-import profile from "../../images/avatar-black.svg";
+import plane from "../../images/login.svg";
+import profile from "../../images/profile.svg";
 import "./Signin.css";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -47,11 +47,13 @@ class SignIn extends Component {
             localStorage.setItem("email", user.email);
             localStorage.setItem("token", user.token);
             localStorage.setItem("type", user.type);
+            
             if (accountType === "EMPLOYEE") {
                 localStorage.setItem("name", user.employeeName);
 				//localStorage.setItem("isApproved", user.isApproved);
 				return <Redirect to="/dashboard" />;
             } else if (accountType === "PASSENGER") {
+                localStorage.setItem("mileagePoints", user.mileagePoints);
                 localStorage.setItem("name", user.passengerName);
                 return <Redirect to="/dashboard" />;
             }
@@ -59,15 +61,19 @@ class SignIn extends Component {
 
         return (
             <div id="signin">
-                <div className="name">
-                    <Link className="home" to="/">
-                        Airlines
-                    </Link>
-                </div>
+            <div className="name">
+            <Link className="home1" to="/">
+                Home
+            </Link>
+
+            <Link className="home" to="/signup">
+                Sign Up
+            </Link>
+    </div>
                 <img src={bg} alt="wavebackground" className="wave" />
                 <div className="main-container">
                     <div className="img">
-                        <img src={judge} alt="avatar" />
+                        <img src={plane} alt="avatar" />
                     </div>
                     <div className="login-form">
                         <form
@@ -78,7 +84,7 @@ class SignIn extends Component {
                             <h2>Welcome Back</h2>
                             <div className="input-div username">
                                 <div className="i">
-                                    <i class="fas fa-user"></i>
+                                    <i class="fa fa-user"></i>
                                 </div>
                                 <div>
                                     <input
@@ -93,7 +99,7 @@ class SignIn extends Component {
                             </div>
                             <div className="input-div password">
                                 <div className="i">
-                                    <i class="fas fa-lock"></i>
+                                    <i class="fa fa-lock"></i>
                                 </div>
                                 <div>
                                     <input
@@ -135,10 +141,7 @@ class SignIn extends Component {
                                 className="btn"
                                 value="Login"
                             />
-                            <div>or</div>
-                            <Link className="register" to="/signup">
-                                Register
-                            </Link>
+                           
                             <div>
                                 {authError ? (
                                     <p className="logInError">{authError}</p>

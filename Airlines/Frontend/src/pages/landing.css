@@ -1,0 +1,140 @@
+.landing_main{
+    background-color: #212329;
+}
+
+.landing_main-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items:center;
+    justify-self: center;
+    width: 80%;
+    margin: 0 auto;
+    height: 90vh;
+    background-color: #212329;
+
+}
+
+.landing_main-content{
+    justify-self: start;
+    margin-left: 20px;
+    color: white;
+    width: 80%;
+
+}
+
+.landing_main-content h1{
+    font-size: 2rem;
+}
+
+.landing_main-content p{
+    margin-top: 1rem;
+    font-size: 1.2rem;
+}
+.landing_main-btn{
+    font-size: 1rem;
+    background-color: #009688;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    margin-top: 2rem;
+    cursor: pointer;
+    position: relative;
+    transition: all .35s;
+    outline: none;
+}
+
+.landing_main-btn a{
+    position: relative;
+    z-index: 2;
+    color: white;
+    text-decoration: none;
+    
+}
+
+.landing_main-btn a:hover{
+    color: #fff;
+}
+
+
+
+.landing_main-btn:after{
+    position: absolute;
+    content: "";
+    top:0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    transition: all .35s;
+    border-radius: 4px;
+    background: tomato;
+    text-decoration: none;
+}
+
+.landing_main-btn:hover{
+    color: white;
+}
+
+.landing_main-btn:hover:after{
+    width: 100%;
+}
+.landing_main-img-container{
+    text-align: center;
+}
+
+.landing_main-img{
+height: 80%;
+width: 80%;
+}
+
+@media screen and (max-width: 768px) {
+    .landing_main-container{
+        display: grid;
+        grid-template-columns: auto;
+        align-items: center;
+        justify-self: center;
+        width: 90%;
+        margin: 0 auto;
+        height: 90vh;
+        background-color: #212329;
+    }
+    .landing_main-content{
+        justify-self: center;
+        color: white;
+        width: 80%;
+        margin: 0;
+    }
+
+    .landing_main-content h1{
+        font-size: 2.5rem;
+    }
+
+    .landing_main-content p{
+        margin-top: 1rem;
+        font-size: 1.5rem;
+    }
+
+    .landing_main-img{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .landing_main-content{
+        text-align: center;
+    }
+
+    .landing_main-content h1{
+        font-size: 2.8rem;
+    }
+
+    .landing_main-content p{
+        margin-top: 2rem;
+        font-size: 1.5rem;
+    }
+
+    .landing_main-btn{
+        padding: 12px 36px;
+        margin-top: 2.5rem;
+    }
+}

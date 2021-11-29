@@ -8,6 +8,7 @@ import {
     SidebarLinkProfile,
     SideBtnWrap,
     SidebarRoute,
+    Pts
 } from "./SidebarElements";
 import { signOut } from "../../store/actions/loginActions";
 import { connect } from "react-redux";
@@ -17,6 +18,11 @@ class SignedInSidebar extends Component {
         const { isOpen } = this.props;
         const { toggle } = this.props;
         const user = localStorage.getItem("name");
+        const mileagePoints = localStorage.getItem("mileagePoints");
+        const type = localStorage.getItem("type");
+        const Points = (type === "PASSENGER") ?(
+            <Pts activeStyle> Mileage Pts: {mileagePoints}</Pts>
+          ) : (<></>)
         return (
             <SidebarContainer isOpen={isOpen} onClick={toggle}>
                 <Icon>
@@ -24,6 +30,7 @@ class SignedInSidebar extends Component {
                 </Icon>
                 <SidebarWrapper>
                     <SidebarMenu>
+                        {Points}
                         <SidebarLinkProfile to="/profile" onClick={toggle}>
                             {user}
                         </SidebarLinkProfile>

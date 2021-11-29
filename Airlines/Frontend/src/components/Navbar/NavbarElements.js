@@ -10,7 +10,7 @@ export const Nav = styled.nav`
   padding: 0.5rem calc((100vw - 1000px) / 2);
   z-index: 10;
   /* Third Nav */
-  /* justify-content: flex-start; */
+  /* j ustify-content: flex-start; */
 `;
 
 export const NavLink = styled(Link)`
@@ -24,6 +24,9 @@ export const NavLink = styled(Link)`
   &.active {
     color: #009688;
     text-decoration: none;
+  }
+  &:hover{
+    color : tomato
   }
 `;
 
@@ -94,7 +97,7 @@ export const NavBtnLink = styled(Link)`
   margin-left: 24px;
   &:hover {
     transition: all 0.2s ease-in-out;
-    background: #fff;
-    color: #009688;
+    background: tomato;
+    color: #fff;
   }
 `;

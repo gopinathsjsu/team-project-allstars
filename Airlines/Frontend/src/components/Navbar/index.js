@@ -14,14 +14,10 @@ export default class Navbar extends Component {
                 </NavLink>
                 <Bars onClick = {toggle}> </Bars>
                 <NavMenu>
-                    <Pts activeStyle> Mileage Pts: </Pts>
-                    <NavLink to='/' activeStyle>
-                        
-                    </NavLink>
-                    <NavLink to='/' activeStyle>
+                    <NavLink to='/signup' activeStyle>
                         Sign Up
                     </NavLink>
-                    <NavBtnLink to='/'>Sign In</NavBtnLink>
+                    <NavBtnLink to='/signin'>Sign In</NavBtnLink>
                 </NavMenu>
                 {/*<NavBtn>
                     <NavBtnLink to='/signin'>Sign In</NavBtnLink>

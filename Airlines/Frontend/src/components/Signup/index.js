@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import photo from "../../images/6.svg";
+import photo from "../../images/signup2.svg";
 import "./Signup.css";
 import { connect } from "react-redux";
 import { signUp } from "../../store/actions/loginActions";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import swal from "sweetalert";
+import MainNavbar from "../MainNavbar"
 
 class SignUp extends Component {
 	state = {
@@ -37,6 +38,7 @@ class SignUp extends Component {
 
 		if (loggedIn) {
 			const accountType = user.type;
+			console.log("user: ", user);
 			localStorage.setItem("user_id", user._id);
 			// localStorage.setItem("name", user.name);
 			localStorage.setItem("email", user.email);
@@ -47,12 +49,23 @@ class SignUp extends Component {
 				//localStorage.setItem("isApproved", user.isApproved);
 				return <Redirect to="/dashboard" />;
 			} else if (accountType === "PASSENGER") {
+				localStorage.setItem("mileagePoints", user.mileagePoints);
 				localStorage.setItem("name", user.passengerName);
 				return <Redirect to="/dashboard" />;
 			}
 		}
 
 		return (
+			<div className="signup_main">
+			<div className="name">
+                    <Link className="home1" to="/">
+                        Home
+                    </Link>
+
+					<Link className="home" to="/signin">
+                        Sign In
+                    </Link>
+            </div>
 			<div id="signup" style={{ paddingTop: "60px" }}>
 				<section className="leftside">
 					<img src={photo} alt="" />
@@ -77,7 +90,7 @@ class SignUp extends Component {
 									onChange={this.handleChange}
 									required
 								/>
-								<i class="fas fa-user"></i>
+								<i class="fa fa-user"></i>
 							</div>
 							<div className="signup-form-control">
 								<input
@@ -89,7 +102,7 @@ class SignUp extends Component {
 									onChange={this.handleChange}
 									required
 								/>
-								<i class="fas fa-user"></i>
+								<i class="fa fa-user"></i>
 							</div>
 							<div class="signup-form-control">
 								<input
@@ -101,7 +114,7 @@ class SignUp extends Component {
 									onChange={this.handleChange}
 									required
 								/>
-								<i class="fas fa-lock"></i>
+								<i class="fa fa-lock"></i>
 							</div>{" "}
 							<div class="radio-signup">
 								<input
@@ -130,6 +143,8 @@ class SignUp extends Component {
 							<button type="submit" className="signup-submit">
 								Sign Up
 							</button>
+							
+							
 							<div>
 								{authError ? <p className="logInError">{authError}</p> : null}
 								{loggedIn ? <p>LoggedIn</p> : null}
@@ -137,6 +152,7 @@ class SignUp extends Component {
 						</form>
 					</div>
 				</section>
+			</div>
 			</div>
 		);
 	}

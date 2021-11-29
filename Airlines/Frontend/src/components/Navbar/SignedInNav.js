@@ -7,6 +7,11 @@ class SignedInNav extends Component {
     render() {
         const {toggle} = this.props;
         const user = localStorage.getItem("name");
+        const mileagePoints = localStorage.getItem("mileagePoints");
+        const type = localStorage.getItem("type");
+        const Points = (type === "PASSENGER") ?(
+          <Pts activeStyle> Mileage Pts: {mileagePoints}</Pts>
+        ) : (<></>)
         return (
             <>
                <Nav>
@@ -15,8 +20,8 @@ class SignedInNav extends Component {
                 </NavLink>
                 <Bars onClick = {toggle}> </Bars>
                 <NavMenu>
-                    <Pts activeStyle> Mileage Pts:</Pts>
-                    <NavLink to='/' activeStyle>
+                    {Points}
+                    <NavLink to='/reservations' activeStyle>
                         {user}
                     </NavLink>
                     <NavBtnLink onClick = {this.props.signOut} to=''>Logout</NavBtnLink>
