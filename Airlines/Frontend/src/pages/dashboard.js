@@ -21,7 +21,7 @@ class DashBoardPage extends Component {
         const type = localStorage.getItem("type");
         // const isApproved = localStorage.getItem("isApproved");
         let center;
-        if (type === "USER") {
+        if (type === "PASSENGER") {
             center = <SearchDashboard />;
         } else {
             center = <SearchDashboard />;

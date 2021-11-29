@@ -15,11 +15,11 @@ class SignedInNav extends Component {
                 </NavLink>
                 <Bars onClick = {toggle}> </Bars>
                 <NavMenu>
-                    <Pts activeStyle> Mileage Pts: {this.state.pts}</Pts>
-                    <NavLink to='/reservations' activeStyle>
+                    <Pts activeStyle> Mileage Pts:</Pts>
+                    <NavLink to='/' activeStyle>
                         {user}
                     </NavLink>
-                    <NavBtnLink onClick = {this.props.signOut}>Logout</NavBtnLink>
+                    <NavBtnLink onClick = {this.props.signOut} to=''>Logout</NavBtnLink>
                 </NavMenu>
                 {/*<NavBtn>
                     <NavBtnLink to='/signin'>Sign In</NavBtnLink>

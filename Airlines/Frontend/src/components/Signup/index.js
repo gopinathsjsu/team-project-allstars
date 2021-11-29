@@ -25,6 +25,7 @@ class SignUp extends Component {
 		if (this.state.accountType === "") {
 			swal("Oops!", "Please select one of the two account types", "error");
 		} else {
+			console.log(this.state)
 			this.props.signUp(this.state);
 		}
 	};
@@ -37,15 +38,17 @@ class SignUp extends Component {
 		if (loggedIn) {
 			const accountType = user.type;
 			localStorage.setItem("user_id", user._id);
-			localStorage.setItem("name", user.name);
+			// localStorage.setItem("name", user.name);
 			localStorage.setItem("email", user.email);
 			localStorage.setItem("token", user.token);
 			localStorage.setItem("type", user.type);
-			if (accountType === "LAWYER") {
-				localStorage.setItem("isApproved", user.isApproved);
-				return <Redirect to="/center" />;
-			} else if (accountType === "USER") {
-				return <Redirect to="/center" />;
+			if (accountType === "EMPLOYEE") {
+				localStorage.setItem("name", user.employeeName);
+				//localStorage.setItem("isApproved", user.isApproved);
+				return <Redirect to="/dashboard" />;
+			} else if (accountType === "PASSENGER") {
+				localStorage.setItem("name", user.passengerName);
+				return <Redirect to="/dashboard" />;
 			}
 		}
 
@@ -103,7 +106,7 @@ class SignUp extends Component {
 							<div class="radio-signup">
 								<input
 									class="radio__input_signup"
-									value="Client"
+									value="PASSENGER"
 									type="radio"
 									name="accountType"
 									id="myRadio1"
@@ -114,7 +117,7 @@ class SignUp extends Component {
 								</label>
 								<input
 									class="radio__input_signup"
-									value="Lawyer"
+									value="EMPLOYEE"
 									type="radio"
 									name="accountType"
 									id="myRadio2"
