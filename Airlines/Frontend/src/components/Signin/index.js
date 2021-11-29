@@ -5,7 +5,7 @@ import profile from "../../images/avatar-black.svg";
 import "./Signin.css";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { logIn } from "../../stores/actions/loginActions";
+import { logIn } from "../../store/actions/loginActions";
 import { Redirect } from "react-router-dom";
 import swal from "sweetalert";
 

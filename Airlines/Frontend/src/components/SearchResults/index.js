@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import plane from "../../images/plane.jpg";
 export default class SearchResults extends Component {
+    
     render() {
         return (
             <>
-                <nav style={{ height: "100px" }}></nav>
+                
                 <div
                     className="w3-content w3-margin-top"
                     style={{ maxWidth: "1400px" }}
@@ -67,7 +68,7 @@ export default class SearchResults extends Component {
                                             min="1"
                                             max="6"
                                         />
-                                        <br />
+                                        <br /> 
                                         <p>
                                             <label>
                                                 <i className="fa fa-male"></i>{" "}

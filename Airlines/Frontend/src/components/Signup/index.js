@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import photo from "../../images/6.svg";
 import "./Signup.css";
 import { connect } from "react-redux";
-import { signUp } from "../../stores/actions/loginActions";
+import { signUp } from "../../store/actions/loginActions";
 import { Redirect } from "react-router-dom";
 import swal from "sweetalert";
 
