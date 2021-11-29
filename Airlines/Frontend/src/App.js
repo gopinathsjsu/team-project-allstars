@@ -6,6 +6,11 @@ import DashBoardPage from "./pages/dashboard";
 import SearchResultsPage from "./pages/searchresults";
 import LandingPage from "./pages/landing";
 import "bootstrap/dist/css/bootstrap.min.css";
+import EmployeeDashboard from "./pages/employeeDashboard";
+import FlightAddition from "./pages/addFlight";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+
 function App() {
     return (
         <div className="App">
@@ -24,10 +29,19 @@ function App() {
                         path="/searchresults"
                         component={SearchResultsPage}
                     ></Route>
+                    <Route
+                    exact
+                    path="/employee/dashboard"
+                    component={EmployeeDashboard}
+                  ></Route>
+                  <Route
+                    exact
+                    path="/employee/addFlight"
+                    component={FlightAddition}
+                  ></Route>
                 </Switch>
             </Router>
         </div>
     );
 }
-
 export default App;
