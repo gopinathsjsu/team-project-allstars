@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { signUp } from "../../store/actions/loginActions";
 import { Redirect, Link } from "react-router-dom";
 import swal from "sweetalert";
-import MainNavbar from "../MainNavbar"
+import MainNavbar from "../MainNavbar";
 
 class SignUp extends Component {
 	state = {
@@ -26,7 +26,7 @@ class SignUp extends Component {
 		if (this.state.accountType === "") {
 			swal("Oops!", "Please select one of the two account types", "error");
 		} else {
-			console.log(this.state)
+			console.log(this.state);
 			this.props.signUp(this.state);
 		}
 	};
@@ -57,102 +57,102 @@ class SignUp extends Component {
 
 		return (
 			<div className="signup_main">
-			<div className="name">
-                    <Link className="home1" to="/">
-                        Home
-                    </Link>
+				<div className="name">
+					<Link className="home1" to="/">
+						Home
+					</Link>
 
 					<Link className="home" to="/signin">
-                        Sign In
-                    </Link>
-            </div>
-			<div id="signup" style={{ paddingTop: "60px" }}>
-				<section className="leftside">
-					<img src={photo} alt="" />
-				</section>
-				<section className="signup-main">
-					<div className="signup-container">
-						<p className="title">Welcome</p>
-						<div className="separator"></div>
-						<p class="welcome-message">Please enter details</p>
-						<form
-							action=""
-							className="signup-form"
-							onSubmit={this.handleSubmit}
-						>
-							<div className="signup-form-control">
-								<input
-									className="signup-input"
-									type="text"
-									placeholder="Username"
-									id="name"
-									name="name"
-									onChange={this.handleChange}
-									required
-								/>
-								<i class="fa fa-user"></i>
-							</div>
-							<div className="signup-form-control">
-								<input
-									className="signup-input"
-									type="email"
-									placeholder="Email"
-									id="email"
-									name="email"
-									onChange={this.handleChange}
-									required
-								/>
-								<i class="fa fa-user"></i>
-							</div>
-							<div class="signup-form-control">
-								<input
-									className="signup-input"
-									type="password"
-									placeholder="Password"
-									id="password"
-									name="password"
-									onChange={this.handleChange}
-									required
-								/>
-								<i class="fa fa-lock"></i>
-							</div>{" "}
-							<div class="radio-signup">
-								<input
-									class="radio__input_signup"
-									value="PASSENGER"
-									type="radio"
-									name="accountType"
-									id="myRadio1"
-									onChange={this.handleChange}
-								/>
-								<label class="radio__label_signup" for="myRadio1">
-									Customer
-								</label>
-								<input
-									class="radio__input_signup"
-									value="EMPLOYEE"
-									type="radio"
-									name="accountType"
-									id="myRadio2"
-									onChange={this.handleChange}
-								/>
-								<label class="radio__label_signup" for="myRadio2">
-									Airline Employee
-								</label>
-							</div>{" "}
-							<button type="submit" className="signup-submit">
-								Sign Up
-							</button>
-							
-							
-							<div>
-								{authError ? <p className="logInError">{authError}</p> : null}
-								{loggedIn ? <p>LoggedIn</p> : null}
-							</div>
-						</form>
-					</div>
-				</section>
-			</div>
+						Sign In
+					</Link>
+				</div>
+				<div id="signup" style={{ paddingTop: "60px" }}>
+					<section className="leftside">
+						<img src={photo} alt="" />
+					</section>
+					<section className="signup-main">
+						<div className="signup-container">
+							<p className="title">Welcome</p>
+							<div className="separator"></div>
+							<p class="welcome-message">Please enter details</p>
+							<form
+								action=""
+								className="signup-form"
+								onSubmit={this.handleSubmit}
+							>
+								<div className="signup-form-control">
+									<input
+										className="signup-input"
+										type="text"
+										placeholder="Username"
+										id="name"
+										name="name"
+										onChange={this.handleChange}
+										required
+									/>
+									<i class="fa fa-user"></i>
+								</div>
+								<div className="signup-form-control">
+									<input
+										className="signup-input"
+										type="email"
+										placeholder="Email"
+										id="email"
+										name="email"
+										pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$'%&*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])$"
+										title="Please enter valid email address"
+										onChange={this.handleChange}
+										required
+									/>
+									<i class="fa fa-user"></i>
+								</div>
+								<div class="signup-form-control">
+									<input
+										className="signup-input"
+										type="password"
+										placeholder="Password"
+										id="password"
+										name="password"
+										onChange={this.handleChange}
+										required
+									/>
+									<i class="fa fa-lock"></i>
+								</div>{" "}
+								<div class="radio-signup">
+									<input
+										class="radio__input_signup"
+										value="PASSENGER"
+										type="radio"
+										name="accountType"
+										id="myRadio1"
+										onChange={this.handleChange}
+									/>
+									<label class="radio__label_signup" for="myRadio1">
+										Customer
+									</label>
+									<input
+										class="radio__input_signup"
+										value="EMPLOYEE"
+										type="radio"
+										name="accountType"
+										id="myRadio2"
+										onChange={this.handleChange}
+									/>
+									<label class="radio__label_signup" for="myRadio2">
+										Airline Employee
+									</label>
+								</div>{" "}
+								<button type="submit" className="signup-submit">
+									Sign Up
+								</button>
+								<div>
+									{authError ? <p className="logInError">{authError}</p> : null}
+									{loggedIn ? <p>LoggedIn</p> : null}
+								</div>
+							</form>
+						</div>
+					</section>
+				</div>
 			</div>
 		);
 	}

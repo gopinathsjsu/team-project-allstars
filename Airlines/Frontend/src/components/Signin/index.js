@@ -10,30 +10,26 @@ import { Redirect } from "react-router-dom";
 import swal from "sweetalert";
 
 class SignIn extends Component {
-    state = {
-        email: "",
-        password: "",
-        accountType: "",
-    };
+	state = {
+		email: "",
+		password: "",
+		accountType: "",
+	};
 
-    handleChange = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value,
-        });
-    };
+	handleChange = (e) => {
+		this.setState({
+			[e.target.name]: e.target.value,
+		});
+	};
 
-    handleSubmit = (e) => {
-        e.preventDefault();
-        if (this.state.accountType === "") {
-            swal(
-                "Oops!",
-                "Please select one of the two account types",
-                "error"
-            );
-        } else {
-            this.props.logIn(this.state);
-        }
-    };
+	handleSubmit = (e) => {
+		e.preventDefault();
+		if (this.state.accountType === "") {
+			swal("Oops!", "Please select one of the two account types", "error");
+		} else {
+			this.props.logIn(this.state);
+		}
+	};
 
     render() {
         const { authError } = this.props;
@@ -59,115 +55,108 @@ class SignIn extends Component {
             }
         }
 
-        return (
-            <div id="signin">
-            <div className="name">
-            <Link className="home1" to="/">
-                Home
-            </Link>
+		return (
+			<div id="signin">
+				<div className="name">
+					<Link className="home1" to="/">
+						Home
+					</Link>
 
-            <Link className="home" to="/signup">
-                Sign Up
-            </Link>
-    </div>
-                <img src={bg} alt="wavebackground" className="wave" />
-                <div className="main-container">
-                    <div className="img">
-                        <img src={plane} alt="avatar" />
-                    </div>
-                    <div className="login-form">
-                        <form
-                            onSubmit={this.handleSubmit}
-                            className="signin-form"
-                        >
-                            <img src={profile} alt="" />
-                            <h2>Welcome Back</h2>
-                            <div className="input-div username">
-                                <div className="i">
-                                    <i class="fa fa-user"></i>
-                                </div>
-                                <div>
-                                    <input
-                                        type="text"
-                                        className="input"
-                                        placeholder="Email"
-                                        id="email"
-                                        name="email"
-                                        onChange={this.handleChange}
-                                    />
-                                </div>
-                            </div>
-                            <div className="input-div password">
-                                <div className="i">
-                                    <i class="fa fa-lock"></i>
-                                </div>
-                                <div>
-                                    <input
-                                        type="password"
-                                        className="input"
-                                        placeholder="Password"
-                                        id="password"
-                                        name="password"
-                                        onChange={this.handleChange}
-                                    />
-                                </div>
-                            </div>
-                            <div class="radio">
-                                <input
-                                    class="radio__input"
-                                    value="PASSENGER"
-                                    type="radio"
-                                    name="accountType"
-                                    id="myRadio1"
-                                    onChange={this.handleChange}
-                                />
-                                <label class="radio__label" htmlFor="myRadio1">
-                                    Customer
-                                </label>
-                                <input
-                                    class="radio__input"
-                                    value="EMPLOYEE"
-                                    type="radio"
-                                    name="accountType"
-                                    id="myRadio2"
-                                    onChange={this.handleChange}
-                                />
-                                <label class="radio__label" htmlFor="myRadio2">
-                                    Airline Employee
-                                </label>
-                            </div>
-                            <input
-                                type="submit"
-                                className="btn"
-                                value="Login"
-                            />
-                           
-                            <div>
-                                {authError ? (
-                                    <p className="logInError">{authError}</p>
-                                ) : null}
-                                {loggedIn ? <p>LoggedIn</p> : null}
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        );
-    }
+					<Link className="home" to="/signup">
+						Sign Up
+					</Link>
+				</div>
+				<img src={bg} alt="wavebackground" className="wave" />
+				<div className="main-container">
+					<div className="img">
+						<img src={plane} alt="avatar" />
+					</div>
+					<div className="login-form">
+						<form onSubmit={this.handleSubmit} className="signin-form">
+							<img src={profile} alt="" />
+							<h2>Welcome Back</h2>
+							<div className="input-div username">
+								<div className="i">
+									<i class="fa fa-user"></i>
+								</div>
+								<div>
+									<input
+										type="text"
+										className="input"
+										placeholder="Email"
+										id="email"
+										name="email"
+										onChange={this.handleChange}
+										pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$'%&*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])$"
+										title="Please enter valid email address"
+									/>
+								</div>
+							</div>
+							<div className="input-div password">
+								<div className="i">
+									<i class="fa fa-lock"></i>
+								</div>
+								<div>
+									<input
+										type="password"
+										className="input"
+										placeholder="Password"
+										id="password"
+										name="password"
+										onChange={this.handleChange}
+									/>
+								</div>
+							</div>
+							<div class="radio">
+								<input
+									class="radio__input"
+									value="PASSENGER"
+									type="radio"
+									name="accountType"
+									id="myRadio1"
+									onChange={this.handleChange}
+								/>
+								<label class="radio__label" htmlFor="myRadio1">
+									Customer
+								</label>
+								<input
+									class="radio__input"
+									value="EMPLOYEE"
+									type="radio"
+									name="accountType"
+									id="myRadio2"
+									onChange={this.handleChange}
+								/>
+								<label class="radio__label" htmlFor="myRadio2">
+									Airline Employee
+								</label>
+							</div>
+							<input type="submit" className="btn" value="Login" />
+
+							<div>
+								{authError ? <p className="logInError">{authError}</p> : null}
+								{loggedIn ? <p>LoggedIn</p> : null}
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		);
+	}
 }
 
 const mapStateToProps = (state) => {
-    return {
-        authError: state.auth.authError,
-        loggedIn: state.auth.loggedIn,
-        user: state.auth.user,
-    };
+	return {
+		authError: state.auth.authError,
+		loggedIn: state.auth.loggedIn,
+		user: state.auth.user,
+	};
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        logIn: (newAccount) => dispatch(logIn(newAccount)),
-    };
+	return {
+		logIn: (newAccount) => dispatch(logIn(newAccount)),
+	};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
