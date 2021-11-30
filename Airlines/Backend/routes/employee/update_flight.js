@@ -28,12 +28,14 @@ router.post("/:flightName", async (req, res) => {
         flightStatus: req.body.flightStatus,
         arrivalDate: req.body.arrivalDate,
         departureDate: req.body.departureDate,
-        //economySeatsCapacity:req.body.economySeatsCapacity,
-        //businessSeatsCapacity:req.body.businessSeatsCapacity,
+        economySeatsCapacity:req.body.economySeatsCapacity,
+        businessSeatsCapacity:req.body.businessSeatsCapacity,
         economySeatPrice: req.body.economySeatPrice,
         businessSeatPrice: req.body.businessSeatPrice,
       }
     );
+
+
     res
       .status(202)
       .json({ flightName: flightName, message: "Succesfully updated" });
