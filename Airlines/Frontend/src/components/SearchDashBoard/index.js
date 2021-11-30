@@ -84,7 +84,6 @@ class SearchDashBoard extends Component {
 									onChange={this.onChange}
 								/>
 								<div className="label" id="to"></div>{" "}
-								<span className="fas fa-map-marker text-muted"></span>
 							</div>
 						</div>
 						<div className="form-group d-sm-flex margin">
@@ -128,7 +127,6 @@ class SearchDashBoard extends Component {
 								onChange={this.onChange}
 							/>
 							<div className="label" id="psngr"></div>{" "}
-							<span className="fas fa-users text-muted"></span>
 						</div>
 						<div className="form-group my-3">
 							<button
