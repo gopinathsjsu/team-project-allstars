@@ -39,7 +39,7 @@ class SignIn extends Component {
         const { authError } = this.props;
         const { loggedIn } = this.props;
         const { user } = this.props;
-
+        
         if (loggedIn) {
             const accountType = user.type;
             localStorage.setItem("user_id", user._id);
@@ -51,7 +51,7 @@ class SignIn extends Component {
             if (accountType === "EMPLOYEE") {
                 localStorage.setItem("name", user.employeeName);
 				//localStorage.setItem("isApproved", user.isApproved);
-				return <Redirect to="/dashboard" />;
+				return <Redirect to="/employee/dashboard" />;
             } else if (accountType === "PASSENGER") {
                 localStorage.setItem("mileagePoints", user.mileagePoints);
                 localStorage.setItem("name", user.passengerName);

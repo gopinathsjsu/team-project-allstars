@@ -47,7 +47,7 @@ class SignUp extends Component {
 			if (accountType === "EMPLOYEE") {
 				localStorage.setItem("name", user.employeeName);
 				//localStorage.setItem("isApproved", user.isApproved);
-				return <Redirect to="/dashboard" />;
+				return <Redirect to="/employee/dashboard" />;
 			} else if (accountType === "PASSENGER") {
 				localStorage.setItem("mileagePoints", user.mileagePoints);
 				localStorage.setItem("name", user.passengerName);

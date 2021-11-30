@@ -1,11 +1,66 @@
 import React, { Component } from "react";
 import plane from "../../images/plane.jpg";
+import "./SearchResults.css";
+
 export default class SearchResults extends Component {
-    
+    state= {
+        flights:{}
+    }
+    componentWillMount = () => {
+        const flights = JSON.parse(localStorage.getItem("flights"));
+        this.setState({
+            flights:flights
+        })
+        
+    }
     render() {
+        let flightDetails ="";
+        if(this.state && this.state.flights){
+            console.log("flightsss",this.state.flights)
+            let flights = {};
+            flights = this.state.flights;
+            flightDetails = flights.map(flight => {
+                return(
+                <>
+                    <div
+                class="w3-row-padding w3-section"
+                style={{
+                    justifyContent: "center",
+                    alignItems: "center",
+                    border: "1px black",
+                    fontSize: "15px",
+                    
+                }}
+            >
+                <div className="w3-col s2 rt">
+                    <b>{flight.flightName}</b>
+                </div>
+                <div className="w3-col s2 rt">
+                    
+                    <b>{flight.departureDate.split('T')[0]}</b>
+                    <p>at {flight.departureDate.split('T')[1].split(":")[0]} : {flight.departureDate.split('T')[1].split(":")[1]}</p>
+                </div>
+                <div className="w3-col s2 rt">
+                    <b>{flight.arrivalDate.split('T')[0]}</b>
+                    <p>at {flight.arrivalDate.split('T')[1].split(":")[0]} : {flight.arrivalDate.split('T')[1].split(":")[1]}</p>
+                </div>
+                <div className="w3-col s2 rt">
+                    <b>Duration</b>
+                </div>
+                <div className="w3-col s2 rt">
+                    <b>{flight.economySeatPrice}</b>
+                </div>
+                <div className="w3-col s2 rt">
+                    <button>Select</button>
+                </div>
+            </div>       
+                    <hr />
+                </>
+                )
+            })
+        }
         return (
-            <>
-                
+            <div className="searchresults_main">
                 <div
                     className="w3-content w3-margin-top"
                     style={{ maxWidth: "1400px" }}
@@ -136,31 +191,36 @@ export default class SearchResults extends Component {
                         <div className="w3-twothird">
                             <div className="w3-container w3-card w3-white w3-margin-bottom">
                                 <div
-                                    class="w3-row-padding w3-section w3-opacity"
+                                    className="w3-row-padding w3-section w3-opacity"
                                     style={{
                                         justifyContent: "center",
                                         alignItems: "center",
                                         border: "1px black",
-                                        fontSize: "18px",
+                                        fontSize: "22px",
                                     }}
                                 >
-                                    <div class="w3-col s2">
+                                    <div className="w3-col s2">
+                                        <b>Flight</b>
+                                    </div>
+                                    <div className="w3-col s2">
                                         <b>Depart</b>
                                     </div>
-                                    <div class="w3-col s2">
+                                    <div className="w3-col s2">
                                         <b>Arrive</b>
                                     </div>
-                                    <div class="w3-col s2">
+                                    <div className="w3-col s2">
                                         <b>Duration</b>
                                     </div>
-                                    <div class="w3-col s3">
-                                        <b>Price</b>
+                                    <div className="w3-col s2">
+                                        <b>Price($)</b>
                                     </div>
-                                    <div class="w3-col s3">
+                                    <div className="w3-col s2">
                                         <b>Select</b>
                                     </div>
+                                    
                                 </div>
-
+                                <hr/>
+                                    <div>{flightDetails}</div>
                                 <div className="w3-container">
                                     <h5 className="w3-opacity">
                                         <b>
@@ -224,7 +284,7 @@ export default class SearchResults extends Component {
                         </div>
                     </div>
                 </div>
-            </>
+            </div>
         );
     }
 }
