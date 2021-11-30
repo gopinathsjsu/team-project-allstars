@@ -10,34 +10,46 @@ const { capitalizeFirstLetter } = require("../../helper/utils");
 const router = express.Router();
 
 //-------------Sindhana Changes -------------------
-const mongoose= require('mongoose');
+const mongoose = require("mongoose");
 const flightModel = require("../../models/flightModel");
 
 router.post("/", async (req, res) => {
-    console.log(req.body);
-    const newflight = new flightModel({
-        flightName:req.body.flightName,
-        departureFrom:req.body.departureFrom,
-        arrivalAt:req.body.arrivalAt,
-        flightStatus:req.body.flightStatus,
-        arrivalDate:req.body.arrivalDate,
-        departureDate:req.body.departureDate,
-        economySeatsCapacity:req.body.economySeatsCapacity,
-        businessSeatsCapacity:req.body.businessSeatsCapacity,
-        economySeatPrice:req.body.economySeatPrice,
-        businessSeatPrice:req.body.businessSeatPrice
+  console.log(req.body);
 
-    })
-    try {
-        await newflight.save();
+  const ecoCap = req.body.economySeatsCapacity;
+  const busiCap = req.body.businessSeatsCapacity;
+  const ecoSeatsBooked = [];
+  const busiSeatsBooked = [];
+  for (var i = 0; i < ecoCap; i++) {
+    ecoSeatsBooked.push(false);
+  }
+  console.log(ecoSeatsBooked);
 
-        res.status(201).json(newflight);
-        
+  for (var i = 0; i < busiCap; i++) {
+    busiSeatsBooked.push(false);
+  }
+  console.log(busiSeatsBooked);
+  const newflight = new flightModel({
+    flightName: req.body.flightName,
+    departureFrom: req.body.departureFrom,
+    arrivalAt: req.body.arrivalAt,
+    flightStatus: req.body.flightStatus,
+    arrivalDate: req.body.arrivalDate,
+    departureDate: req.body.departureDate,
+    economySeatsCapacity: req.body.economySeatsCapacity,
+    economySeatsBooked: ecoSeatsBooked,
+    businessSeatsCapacity: req.body.businessSeatsCapacity,
+    businessSeatsBooked: busiSeatsBooked,
+    economySeatPrice: req.body.economySeatPrice,
+    businessSeatPrice: req.body.businessSeatPrice,
+  });
+  try {
+    await newflight.save();
 
-    } catch(error) {
-        res.status(400).json({ message : error.message});
-    }
-
+    res.status(201).json(newflight);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
 });
 
 module.exports = router;

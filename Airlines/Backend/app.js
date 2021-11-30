@@ -9,6 +9,7 @@ const passengerLogin = require("./routes/passenger/login.js");
 const employeeSignup = require("./routes/employee/signup.js");
 const employeeLogin = require("./routes/employee/login.js");
 const flightSearch = require("./routes/flight/search.js");
+const reservation = require("./routes/passenger/reservation");
 
 //Employee adding flight
 const employeeAddFlight = require("./routes/employee/add_flights.js");
@@ -26,18 +27,18 @@ app.use(bodyParser.json());
 
 //Allow Access Control
 app.use(function (req, res, next) {
-	res.setHeader("Access-Control-Allow-Origin", frontendURI);
-	res.setHeader("Access-Control-Allow-Credentials", "true");
-	res.setHeader(
-		"Access-Control-Allow-Methods",
-		"GET,HEAD,OPTIONS,POST,PUT,DELETE"
-	);
-	res.setHeader(
-		"Access-Control-Allow-Headers",
-		"Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers"
-	);
-	res.setHeader("Cache-Control", "no-cache");
-	next();
+  res.setHeader("Access-Control-Allow-Origin", frontendURI);
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET,HEAD,OPTIONS,POST,PUT,DELETE"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers"
+  );
+  res.setHeader("Cache-Control", "no-cache");
+  next();
 });
 
 //adding routes
@@ -48,9 +49,10 @@ app.use("/employee/login", employeeLogin);
 
 //Employee adding flight
 app.use("/employee/addFlights", employeeAddFlight);
-app.use("/employee/updateFlight",employeeUpdateFlight);
-app.use("/employee/showFlights",employeeShowFlight);
+app.use("/employee/updateFlight", employeeUpdateFlight);
+app.use("/employee/showFlights", employeeShowFlight);
 app.use("/employee/deleteFlight", employeeDeleteFlight);
 app.use("/flight/search", flightSearch);
+app.use("/passenger/reservation", reservation);
 
 module.exports = app;
