@@ -6,48 +6,47 @@ import Server from "../../webConfig";
 
 function UpdateFlight(props) {
   const [show, setShow] = useState(false);
-  const [flightName, setFlightName] = useState();
-  const [departureFrom, setDepartureFrom] = useState();
-  const [arrivalAt, setArrivalAt] = useState();
-  const [departureDate, setDepartureDate] = useState();
-  const [arrivalDate, setArrivalDate] = useState();
-  const [flightStatus, setFlightStatus] = useState();
+  const [fName, setFlightName] = useState();
+  const [depFrom, setDepartureFrom] = useState();
+  const [arriveAt, setArrivalAt] = useState();
+  const [departDate, setDepartureDate] = useState();
+  const [arriveDate, setArrivalDate] = useState();
+  const [fStatus, setFlightStatus] = useState();
   const [ecoSeatCap, setEcoSeatCap] = useState();
-  const [ecoSeatPrice, setEcoSeatPrice] = useState();
+  const [economySeatPrice, setEcoSeatPrice] = useState();
   const [busiSeatCap, setBusiSeatCap] = useState();
-  const [busiSeatPrice, setBusiSeatPrice] = useState();
+  const [businessSeatPrice, setBusiSeatPrice] = useState();
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const onChangeFlightName = (e) => {
-    console.log(e);
     setFlightName({
-      flightName: e.target.value,
+      fName: e.target.value,
     });
   };
   const onChangeDepartureFrom = (e) => {
     setDepartureFrom({
-      departureFrom: e.target.value,
+      depFrom: e.target.value,
     });
   };
   const onChangeArrivalAt = (e) => {
     setArrivalAt({
-      arrivalAt: e.target.value,
+      arriveAt: e.target.value,
     });
   };
   const onChangeDepartureDate = (e) => {
     setDepartureDate({
-      departureDate: e.target.value,
+      departDate: e.target.value,
     });
   };
   const onChangeArrivalDate = (e) => {
     setArrivalDate({
-      arrivalDate: e.target.value,
+      arriveDate: e.target.value,
     });
   };
   const onChangeFlightStatus = (e) => {
     setFlightStatus({
-      flightStatus: e.target.value,
+      fStatus: e.target.value,
     });
   };
   const onChangeEcoSeatCap = (e) => {
@@ -62,30 +61,30 @@ function UpdateFlight(props) {
   };
   const onChangeBusiSeatPrice = (e) => {
     setBusiSeatPrice({
-      busiSeatPrice: e.target.value,
+      businessSeatPrice: e.target.value,
     });
   };
   const onChangeEcoSeatPrice = (e) => {
     setEcoSeatPrice({
-      ecoSeatPrice: e.target.value,
+      economySeatPrice: e.target.value,
     });
   };
   const onSubmitUpdate = (e) => {
     e.preventDefault();
-
-    console.log(flightName);
+    console.log("Flight statue", fStatus);
     const updateFlightData = {
-      departureFrom: departureFrom,
-      arrivalAt: arrivalAt,
-      flightStatus: { flightStatus },
-      arrivalDate: arrivalDate,
-      departureDate: departureDate,
-      economySeatPrice: ecoSeatPrice,
-      businessSeatPrice: busiSeatPrice,
+      departureFrom: depFrom || props.flighData.departureFrom,
+      arrivalAt: arriveAt || props.flighData.arrivalAt,
+      flightStatus: fStatus || props.flighData.flightStatus,
+      arrivalDate: arriveDate || props.flighData.arrivalDate,
+      departureDate: departDate || props.flighData.departureDate,
+      economySeatPrice: economySeatPrice || props.flighData.economySeatPrice,
+      businessSeatPrice: businessSeatPrice || props.flighData.businessSeatPrice,
     };
 
     console.log("flight data to post", updateFlightData);
-
+    const flightName = fName || props.flighData.flightName;
+    console.log("flight name", flightName);
     axios.defaults.withCredentials = true;
     axios
       .post(`${Server}/employee/updateFlight/${flightName}`, updateFlightData)
@@ -93,7 +92,7 @@ function UpdateFlight(props) {
         console.log("response after post", response);
       })
       .catch((error) => {
-        alert("Failed to add expense");
+        alert("Failed to update flight");
         console.log("error:", error);
       });
     handleClose();
@@ -123,7 +122,7 @@ function UpdateFlight(props) {
                       placeholder="Flight Name"
                       onChange={onChangeFlightName}
                       className="form-control"
-                      value={props.flighData.flightName}
+                      defaultValue={props.flighData.flightName}
                     />
                   </div>
 
@@ -135,7 +134,7 @@ function UpdateFlight(props) {
                       name="departureFrom"
                       className="form-control"
                       onChange={onChangeDepartureFrom}
-                      value={props.flighData.departureFrom}
+                      defaultValue={props.flighData.departureFrom}
                     />
                     <div className="label" id="from"></div>{" "}
                     <span className="fas fa-dot-circle text-muted"></span>
@@ -149,7 +148,7 @@ function UpdateFlight(props) {
                       name="arrivalAt"
                       className="form-control"
                       onChange={onChangeArrivalAt}
-                      value={props.flighData.arrivalAt}
+                      defaultValue={props.flighData.arrivalAt}
                     />
                     <div className="label" id="to"></div>{" "}
                     <span className="fas fa-map-marker text-muted"></span>
@@ -163,7 +162,7 @@ function UpdateFlight(props) {
                       name="departureDate"
                       className="form-control"
                       onChange={onChangeDepartureDate}
-                      value={props.flighData.departureDate}
+                      defaultValue={props.flighData.departureDate}
                     />
                     <div className="label" id="depart"></div>
                   </div>
@@ -176,7 +175,7 @@ function UpdateFlight(props) {
                       name="arrivalDate"
                       className="form-control"
                       onChange={onChangeArrivalDate}
-                      value={props.flighData.arrivalDate}
+                      defaultValue={props.flighData.arrivalDate}
                     />
                     <div className="label" id="return"></div>
                   </div>
@@ -189,7 +188,7 @@ function UpdateFlight(props) {
                       placeholder="Flight Status"
                       onChange={onChangeFlightStatus}
                       className="form-control"
-                      value={props.flighData.flightStatus}
+                      defaultValue={props.flighData.flightStatus}
                     />
                   </div>
 
@@ -201,7 +200,7 @@ function UpdateFlight(props) {
                       name="ecoSeatCap"
                       className="form-control"
                       onChange={onChangeEcoSeatCap}
-                      value={props.flighData.economySeatsCapacity}
+                      defaultValue={props.flighData.economySeatsCapacity}
                     />
                   </div>
                   <div className="d-flex align-items-center flex-fill ms-sm-1 my-sm-0 my-4 border-bottom position-relative">
@@ -212,7 +211,7 @@ function UpdateFlight(props) {
                       name="busiSeatCap"
                       className="form-control"
                       onChange={onChangeBusiSeatCap}
-                      value={props.flighData.businessSeatsCapacity}
+                      defaultValue={props.flighData.businessSeatsCapacity}
                     />
                   </div>
 
@@ -224,7 +223,7 @@ function UpdateFlight(props) {
                       name="ecoSeatPrice"
                       className="form-control"
                       onChange={onChangeEcoSeatPrice}
-                      value={props.flighData.economySeatPrice}
+                      defaultValue={props.flighData.economySeatPrice}
                     />
                   </div>
                   <div className="d-flex align-items-center flex-fill ms-sm-1 my-sm-0 my-4 border-bottom position-relative">
@@ -235,7 +234,7 @@ function UpdateFlight(props) {
                       name="busiSeatPrice"
                       className="form-control"
                       onChange={onChangeBusiSeatPrice}
-                      value={props.flighData.businessSeatPrice}
+                      defaultValue={props.flighData.businessSeatPrice}
                     />
                   </div>
 
