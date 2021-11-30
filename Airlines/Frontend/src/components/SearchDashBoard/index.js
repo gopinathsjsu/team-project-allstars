@@ -36,6 +36,7 @@ class SearchDashBoard extends Component {
 						flights:response.data
 					})
 					localStorage.setItem("flights", JSON.stringify(response.data));
+					localStorage.setItem("travelType", searchData.type);
 				}
 			})
 			.catch((error) => {

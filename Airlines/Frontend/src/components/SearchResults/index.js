@@ -1,12 +1,90 @@
 import React, { Component } from "react";
 import plane from "../../images/plane.jpg";
 import "./SearchResults.css";
+import axios from "axios";
+import Server from "../../webConfig";
+import { Redirect } from "react-router-dom";
+import swal from "sweetalert";
+import { FaLightbulb } from "react-icons/fa";
 
 export default class SearchResults extends Component {
     state= {
-        flights:{}
+        flights:{},
+        departureFrom:"",
+        arrivalAt:"",
+        departureDate:"",
+        travellers:0,
+        type:"",
+        reservation : false
     }
-    componentWillMount = () => {
+
+    onChange = (e) => {
+		this.setState({
+			[e.target.id]: e.target.value,
+		});
+	};
+
+    onSubmitSearch = (e) => {
+		e.preventDefault();
+		const searchData = {
+			departureFrom: this.state.departureFrom,
+			arrivalAt: this.state.arrivalAt,
+			departureDate: this.state.departureDate,
+			type: this.state.type,
+			travellers: this.state.travellers,
+		};
+		
+		axios.defaults.withCredentials = true;
+		axios
+			.post(`${Server}/flight/search`, searchData)
+			.then((response) => {
+				console.log("response data from search flight is", response.data);
+				if (response.status === 200 ) {
+					this.setState({
+						flights:response.data
+					})
+					localStorage.setItem("flights", JSON.stringify(response.data));
+                    localStorage.setItem("travelType", searchData.type);
+				}
+			})
+			.catch((error) => {
+				console.log("error:", error);
+				swal("", "Sorry! There are no flights for given inputs. Try to search for other dates/places", "warning");
+			});
+	};
+
+    onSelect = async (id) => {
+        console.log("id----", typeof(id));
+        const flights = this.state.flights;
+        let reservation ={}
+        const travelType = localStorage.getItem("travelType");
+        console.log("travelType", travelType);
+        flights.forEach(flight => {
+            if(id === flight._id){
+                const price = travelType === "economy" ? flight.economySeatPrice : flight.businessSeatPrice
+                reservation = {
+                    origin: flight.departureFrom,
+                    destination: flight.arrivalAt,
+                    departureDate: flight.departureDate,
+                    arrivalDate: flight.arrivalDate,
+                    numberOfTravellers: 1,
+                    travelType: travelType,
+                    flightId: id,
+                    price: price
+                }
+            }
+        });
+
+        console.log("Reservations: ", reservation);
+        localStorage.setItem("reservationDetails", reservation);
+        this.setState({
+            ...this.state,
+            reservation: true
+        })
+        
+    }
+
+    componentWillMount = async () => {
         const flights = JSON.parse(localStorage.getItem("flights"));
         this.setState({
             flights:flights
@@ -20,10 +98,12 @@ export default class SearchResults extends Component {
             let flights = {};
             flights = this.state.flights;
             flightDetails = flights.map(flight => {
+                console.log("ID__", flight._id)
                 return(
                 <>
                     <div
                 class="w3-row-padding w3-section"
+                id={flight._id}
                 style={{
                     justifyContent: "center",
                     alignItems: "center",
@@ -51,13 +131,31 @@ export default class SearchResults extends Component {
                     <b>{flight.economySeatPrice}</b>
                 </div>
                 <div className="w3-col s2 rt">
-                    <button>Select</button>
+                <button
+                className="w3-button w3-block "
+                style={{
+                    backgroundColor: "#009688",
+                    borderRadius: "10px",
+                    color: "white",
+                }}
+                type="submit"
+                onClick = { () => this.onSelect(flight._id)}
+            >
+                Select
+            </button>
                 </div>
             </div>       
                     <hr />
                 </>
                 )
             })
+        }else{
+            flightDetails = (
+                <h1>Loading</h1>
+            )
+        }
+        if(this.state && this.state.reservation){
+            return( <Redirect to="/selectseat"/>)
         }
         return (
             <div className="searchresults_main">
@@ -78,8 +176,7 @@ export default class SearchResults extends Component {
                                     <h2>Update Search</h2>
                                     <hr />
                                     <form
-                                        action="/action_page.php"
-                                        target="_blank"
+                                        onSubmit={this.onSubmitSearch}
                                     >
                                         <p>
                                             <label>
@@ -93,6 +190,8 @@ export default class SearchResults extends Component {
                                             placeholder="San Jose"
                                             name="From"
                                             required
+                                            onChange={this.onChange}
+                                            id="departureFrom"
                                         />
                                         <br />
                                         <p>
@@ -107,6 +206,8 @@ export default class SearchResults extends Component {
                                             placeholder="Atlanta"
                                             name="To"
                                             required
+                                            onChange={this.onChange}
+                                            id="arrivalAt"
                                         />
                                         <br />
                                         <p>
@@ -118,10 +219,9 @@ export default class SearchResults extends Component {
                                         <input
                                             className="w3-input w3-border"
                                             type="Date"
-                                            value="1"
                                             name="Date"
-                                            min="1"
-                                            max="6"
+                                            onChange={this.onChange}
+                                            id="departureDate"
                                         />
                                         <br /> 
                                         <p>
@@ -133,10 +233,11 @@ export default class SearchResults extends Component {
                                         <input
                                             className="w3-input w3-border"
                                             type="number"
-                                            value="0"
-                                            name="Kids"
+                                            name="travellers"
                                             min="0"
                                             max="6"
+                                            onChange={this.onChange}
+                                            id="numberOfTravellers"
                                         />
 
                                         <br></br>
@@ -215,71 +316,12 @@ export default class SearchResults extends Component {
                                         <b>Price($)</b>
                                     </div>
                                     <div className="w3-col s2">
-                                        <b>Select</b>
+                                        
                                     </div>
                                     
                                 </div>
                                 <hr/>
                                     <div>{flightDetails}</div>
-                                <div className="w3-container">
-                                    <h5 className="w3-opacity">
-                                        <b>
-                                            Front End Developer / w3schools.com
-                                        </b>
-                                    </h5>
-                                    <h6 className="w3-text-teal">
-                                        <i className="fa fa-calendar fa-fw w3-margin-right"></i>
-                                        Jan 2015 -
-                                        <span className="w3-tag w3-teal w3-round">
-                                            Current
-                                        </span>
-                                    </h6>
-                                    <p>
-                                        Lorem ipsum dolor sit amet. Praesentium
-                                        magnam consectetur vel in deserunt
-                                        aspernatur est reprehenderit sunt hic.
-                                        Nulla tempora soluta ea et odio, unde
-                                        doloremque repellendus iure, iste.
-                                    </p>
-                                    <hr />
-                                </div>
-
-                                <div className="w3-container">
-                                    <h5 className="w3-opacity">
-                                        <b>Web Developer / something.com</b>
-                                    </h5>
-                                    <h6 className="w3-text-teal">
-                                        <i className="fa fa-calendar fa-fw w3-margin-right"></i>
-                                        Mar 2012 - Dec 2014
-                                    </h6>
-                                    <p>
-                                        Consectetur adipisicing elit.
-                                        Praesentium magnam consectetur vel in
-                                        deserunt aspernatur est reprehenderit
-                                        sunt hic. Nulla tempora soluta ea et
-                                        odio, unde doloremque repellendus iure,
-                                        iste.
-                                    </p>
-                                    <hr />
-                                </div>
-
-                                <div className="w3-container">
-                                    <h5 className="w3-opacity">
-                                        <b>
-                                            Graphic Designer /
-                                            designsomething.com
-                                        </b>
-                                    </h5>
-                                    <h6 className="w3-text-teal">
-                                        <i className="fa fa-calendar fa-fw w3-margin-right"></i>
-                                        Jun 2010 - Mar 2012
-                                    </h6>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur
-                                        adipisicing elit.
-                                    </p>
-                                    <br />
-                                </div>
                             </div>
                         </div>
                     </div>
