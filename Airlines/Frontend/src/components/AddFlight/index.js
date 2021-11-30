@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Server from "../../webConfig";
-import Button from "react-bootstrap/Button";
 import swal from "sweetalert";
 import { Redirect } from "react-router";
 
