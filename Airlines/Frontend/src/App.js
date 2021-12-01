@@ -10,6 +10,7 @@ import EmployeeDashboard from "./pages/employeeDashboard";
 import FlightAddition from "./pages/addFlight";
 import TravellerInfoPage from "./pages/travellerInfo";
 import "bootstrap/dist/css/bootstrap.min.css";
+import SeatSelect from "./pages/seatselect";
 
 function App() {
 	return (
@@ -40,6 +41,8 @@ function App() {
 						path="/employee/addFlight"
 						component={FlightAddition}
 					></Route>
+					<Route exact path="/seatselect" component={SeatSelect}>
+					</Route>
 				</Switch>
 			</Router>
 		</div>
