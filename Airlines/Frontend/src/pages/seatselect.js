@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import SearchResults from "../components/SearchResults";
 // import Navbar from "../components/Navbar";
 import MainNavbar from "../components/MainNavbar";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import SignedInSidebar from "../components/Sidebar/signedInSidebar";
+import SeatSelect from "../components/SeatSelect";
 
-class searchresults extends Component {
+class seatselect extends Component {
     state = {
         isOpen: false,
     };
@@ -25,7 +25,7 @@ class searchresults extends Component {
             toggle={this.handleToggle}
         />
                 <MainNavbar toggle={this.handleToggle}/>
-                <SearchResults />
+                <SeatSelect />
             </>
         );
     }
@@ -37,4 +37,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps, null)(searchresults);
+export default connect(mapStateToProps, null)(seatselect);

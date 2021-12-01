@@ -4,6 +4,30 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
+.signup_main{
+    background-color: #333;
+}
+
+.home1 {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #009688;
+    font-size: 20px;
+    z-index: 12;
+    text-decoration: none;
+    font-size: 30px;
+    margin-right: 50px;
+}
+
+.home1:hover {
+    margin-top: 15px;
+    font-weight: bold;
+    color: tomato;
+    font-size: 20px;
+    z-index: 12;
+    text-decoration: none;
+    font-size: 30px;
+}
 
 .signup-main,
 .leftside {
@@ -13,7 +37,7 @@
 }
 
 .leftside {
-    background: url(../../images/wave-blue.png) no-repeat;
+    /* background: url(../../images/wave-blue.png) no-repeat; */
     background-size: 100% 102%;
 }
 
@@ -36,10 +60,11 @@
     text-transform: uppercase;
     font-size: 3em;
     font-weight: bold;
+    color: white;
 }
 
 .separator {
-    background-color: #843bc7;
+    background-color: #009688;
     margin: 24px;
     width: 150px;
     height: 4px;
@@ -47,7 +72,7 @@
 
 .welcome-message {
     margin-bottom: 30px;
-    color: #696969;
+    color: #aaa;
     text-align: center;
     font-size: 1.1em;
     line-height: 28px;
@@ -64,6 +89,7 @@
     width: 100%;
     position: relative;
     margin-bottom: 24px;
+    color: white;
 }
 
 .signup-input,
@@ -92,7 +118,8 @@
 }
 
 .signup-input:focus ~ i {
-    color: #843bc7;
+    color: #009688;
+    font-size: 20px;
 }
 .signup-submit {
     letter-spacing: 2px;
@@ -101,7 +128,7 @@
     padding: 14px 64px;
     margin: 32px auto;
     text-transform: uppercase;
-    background-image: linear-gradient(to right, #8b33c5, #15a0e1);
+    background-image: linear-gradient(to right, #006157, #11c5b3);
     cursor: pointer;
     transition: opacity 0.4s;
 }
@@ -138,15 +165,15 @@ button.signup-submit:hover {
     padding: 8px 14px;
     font-size: 14px;
     color: #ffffff;
-    background: #15a0e1;
+    background: #009688;
     cursor: pointer;
     transition: background 0.1s;
 }
 
 .radio__label_signup:not(:last-of-type) {
-    border-right: 1px solid #8b33c5;
+    border-right: 1px solid #1cafa1;
 }
 
 .radio__input_signup:checked + .radio__label_signup {
-    background: #8b33c5;
+    background: #013d37;
 }

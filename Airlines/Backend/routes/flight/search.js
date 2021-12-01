@@ -15,7 +15,7 @@ router.post("/", async (req, res) => {
 					departureDate: req.body.departureDate,
 					economySeatsCapacity: { $gt: req.body.travellers },
 				},
-				{ _id: 0 }
+				{}
 			);
 		} else {
 			flightData = await flightModel.find(

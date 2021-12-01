@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./SearchDashBoard.css";
 import axios from "axios";
 import Server from "../../webConfig";
-import { Redirect } from "react-router";
+import { Redirect } from "react-router-dom";
 import swal from "sweetalert";
 class SearchDashBoard extends Component {
 	constructor(props) {
@@ -25,25 +25,32 @@ class SearchDashBoard extends Component {
 			type: this.state.type,
 			travellers: this.state.travellers,
 		};
-		console.log("search criteria: ", searchData);
+		// console.log("search criteria: ", searchData);
 		axios.defaults.withCredentials = true;
 		axios
 			.post(`${Server}/flight/search`, searchData)
 			.then((response) => {
 				console.log("response data from search flight is", response.data);
-				if (response.status === 200) {
-					//need to send the data to next page
+				if (response.status === 200 ) {
+					this.setState({
+						flights:response.data
+					})
+					localStorage.setItem("flights", JSON.stringify(response.data));
+					localStorage.setItem("travelType", searchData.type);
 				}
 			})
 			.catch((error) => {
 				console.log("error:", error);
-				swal("Oops!", "Could not find the flight with given details", "error");
+				swal("", "Sorry! There are no flights for given inputs. Try to search for other dates/places", "warning");
 			});
 	};
 
 	render() {
 		let redirectVar = null;
 		console.log("this.state: " + this.state);
+		if(this.state.flights && this.state.flights.length>0){
+			return <Redirect to="/searchresults"/>;	
+		}
 		return (
 			<div className="main1">
 				{redirectVar}
@@ -84,7 +91,6 @@ class SearchDashBoard extends Component {
 									onChange={this.onChange}
 								/>
 								<div className="label" id="to"></div>{" "}
-								<span className="fas fa-map-marker text-muted"></span>
 							</div>
 						</div>
 						<div className="form-group d-sm-flex margin">
@@ -128,7 +134,6 @@ class SearchDashBoard extends Component {
 								onChange={this.onChange}
 							/>
 							<div className="label" id="psngr"></div>{" "}
-							<span className="fas fa-users text-muted"></span>
 						</div>
 						<div className="form-group my-3">
 							<button

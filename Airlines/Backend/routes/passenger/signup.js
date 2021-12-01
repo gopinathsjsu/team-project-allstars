@@ -69,6 +69,7 @@ router.post("/", async (req, res) => {
       email: email,
       password: hashedPassword,
       type: "PASSENGER",
+      mileagePoints : 0
     };
     const rawPassenger = new passengerModel(passengerObject);
     try {
@@ -78,6 +79,7 @@ router.post("/", async (req, res) => {
         passengerName: passengerName,
         email: email,
         type: "PASSENGER",
+        mileagePoints : 0
       };
       const jwtToken = jwt.sign(payload, config.jwtSecretKey, {
         expiresIn: config.jwtExpiryTime,
@@ -89,6 +91,7 @@ router.post("/", async (req, res) => {
         email: passenger.email,
         type: "PASSENGER",
         token: jwtToken,
+        mileagePoints : 0
       };
       res.status(200).send(response);
       return;

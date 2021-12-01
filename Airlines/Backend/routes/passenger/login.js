@@ -53,6 +53,7 @@ router.post("/", async (req, res) => {
           passengerName: capitalizeFirstLetter(passenger.passengerName),
           email: passenger.email,
           type: "PASSENGER",
+          mileagePoints : passenger.mileagePoints
         };
 
         // Generate a JWT token
