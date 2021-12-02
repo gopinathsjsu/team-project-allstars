@@ -22,6 +22,8 @@ const reservationSchema = new Schema(
     bookedBy: { type: mongoose.Schema.Types.ObjectId, ref: "passenger" },
     reservationStatus: { type: String, trim: true },
     price: { type: Number },
+    mileagePointsEarned: { type: Number },
+    mileagePointsUsed: { type: Number },
   },
   {
     versionKey: false,

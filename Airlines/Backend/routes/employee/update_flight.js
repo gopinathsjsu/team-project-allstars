@@ -10,7 +10,7 @@ const { capitalizeFirstLetter } = require("../../helper/utils");
 const router = express.Router();
 
 //-------------Sindhana Changes -------------------
-const mongoose = require("mongoose");
+
 const flightModel = require("../../models/flightModel");
 
 router.post("/:flightName", async (req, res) => {
