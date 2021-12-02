@@ -60,7 +60,7 @@ app.use("/flight/search", flightSearch);
 app.use("/passenger/reservation", reservation);
 
 //Show and cancel Reservation
-app.use("reservation/showReservation",showReservation);
-app.use("reservation/cancelReservation",cancelReservation);
+app.use("/reservation/showReservation",showReservation);
+app.use("/reservation/cancelReservation",cancelReservation);
 
 module.exports = app;
