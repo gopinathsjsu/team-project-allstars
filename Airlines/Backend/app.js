@@ -17,6 +17,10 @@ const employeeUpdateFlight = require("./routes/employee/update_flight.js");
 const employeeShowFlight = require("./routes/employee/show_flights.js");
 const employeeDeleteFlight = require("./routes/employee/delete_flight.js");
 
+//Show and cancel Reservation
+const showReservation = require("./routes/reservation/show_reservations.js");
+const cancelReservation = require("./routes/reservation/cancel_reservation.js");
+
 const { frontendURI } = require("./utils/config");
 app.use(express.static(__dirname + "public"));
 app.use(express.json());
@@ -54,5 +58,9 @@ app.use("/employee/showFlights", employeeShowFlight);
 app.use("/employee/deleteFlight", employeeDeleteFlight);
 app.use("/flight/search", flightSearch);
 app.use("/passenger/reservation", reservation);
+
+//Show and cancel Reservation
+app.use("/reservation/showReservation",showReservation);
+app.use("/reservation/cancelReservation",cancelReservation);
 
 module.exports = app;
