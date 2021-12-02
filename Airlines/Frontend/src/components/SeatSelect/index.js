@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
 import Magnifier from "react-magnifier";
 import yourImage from "../../images/flightMap.jpg";
-
-
+import axios from "axios";
 export default class SeatSelect extends Component {
+
+    // componentDidMount = () => {
+    //     axios.
+    // }
+
     render() {
         return (
             <>
@@ -16,6 +20,7 @@ export default class SeatSelect extends Component {
                         <div className="w3-third" style={{width:"300px", justifyContent:"center", alignItems:"center"}}>
                             
                                 <div className="w3-container w3-display-container w3-padding-16">
+
                                     <Magnifier src={yourImage} 
                                     width="183px" 
                                     height="100%" 
@@ -23,6 +28,7 @@ export default class SeatSelect extends Component {
                                     mgWidth={120}
                                     mgHeight={120}
                                     />
+                                    
                                 </div>
                             <br />
                         </div>

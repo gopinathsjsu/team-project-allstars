@@ -17,6 +17,8 @@ const employeeUpdateFlight = require("./routes/employee/update_flight.js");
 const employeeShowFlight = require("./routes/employee/show_flights.js");
 const employeeDeleteFlight = require("./routes/employee/delete_flight.js");
 
+const getSeatCount = require("./routes/flight/getSeatCount.js");
+
 const { frontendURI } = require("./utils/config");
 app.use(express.static(__dirname + "public"));
 app.use(express.json());
@@ -54,5 +56,8 @@ app.use("/employee/showFlights", employeeShowFlight);
 app.use("/employee/deleteFlight", employeeDeleteFlight);
 app.use("/flight/search", flightSearch);
 app.use("/passenger/reservation", reservation);
+
+
+app.use("/flight/getseatcount", getSeatCount);
 
 module.exports = app;
