@@ -60,13 +60,10 @@ app.use("/employee/deleteFlight", employeeDeleteFlight);
 app.use("/flight/search", flightSearch);
 app.use("/passenger/reservation", reservation);
 
-<<<<<<< HEAD
 
 app.use("/flight/getseatcount", getSeatCount);
-=======
 //Show and cancel Reservation
 app.use("/reservation/showReservation",showReservation);
 app.use("/reservation/cancelReservation",cancelReservation);
->>>>>>> e80974952645972fd4d3226eb089cad70dcb809e
 
 module.exports = app;
