@@ -21,12 +21,12 @@ router.post("/", async (req, res) => {
   const ecoSeatsBooked = [];
   const busiSeatsBooked = [];
   for (var i = 0; i < ecoCap; i++) {
-    ecoSeatsBooked.push(false);
+    ecoSeatsBooked.push("false");
   }
   console.log(ecoSeatsBooked);
 
   for (var i = 0; i < busiCap; i++) {
-    busiSeatsBooked.push(false);
+    busiSeatsBooked.push("false");
   }
   console.log(busiSeatsBooked);
   const newflight = new flightModel({
