@@ -15,8 +15,8 @@ class AddFlight extends Component {
 			flightStatus: this.state.flightStatus,
 			arrivalDate: this.state.arrivalDate,
 			departureDate: this.state.departureDate,
-			economySeatsCapacity: this.state.ecoSeatCap,
-			businessSeatsCapacity: this.state.busiSeatCap,
+			departureTime: this.state.departureTime,
+			arrivalTime: this.state.arrivalTime,
 			economySeatPrice: this.state.ecoSeatPrice,
 			businessSeatPrice: this.state.busiSeatPrice,
 		};
@@ -114,44 +114,45 @@ class AddFlight extends Component {
 								<div className="label" id="return"></div>
 							</div>
 						</div>
-						<div className="d-flex align-items-center flex-fill me-sm-1 my-sm-0 my-4 border-bottom position-relative">
-							<input
-								type="text"
-								id="flightStatus"
-								name="flightStatus"
-								placeholder="Flight Status"
-								onChange={this.onChange}
-								className="form-control"
-							/>
-						</div>
 						<div className="form-group d-sm-flex margin">
 							<div className="d-flex align-items-center flex-fill me-sm1 my-sm-0 border-bottom position-relative">
 								<input
-									type="number"
+									type="time"
 									required
-									placeholder="Economy Seats Capacity"
-									id="ecoSeatCap"
-									name="ecoSeatCap"
+									placeholder="Departure Time"
+									id="departureTime"
+									name="departureTime"
 									className="form-control"
 									onChange={this.onChange}
-									min="1"
-									max="200"
 								/>
 							</div>
 							<div className="d-flex align-items-center flex-fill ms-sm-1 my-sm-0 my-4 border-bottom position-relative">
 								<input
-									type="number"
+									type="time"
 									required
-									placeholder="Business Seats Capacity"
-									id="busiSeatCap"
-									name="busiSeatCap"
+									placeholder="Arrival Time"
+									id="arrivalTime"
+									name="arrivalTime"
 									className="form-control"
 									onChange={this.onChange}
-									min="1"
-									max="200"
 								/>
 							</div>
 						</div>
+						<div className="d-flex align-items-center flex-fill me-sm-1 my-sm-0 my-4 border-bottom position-relative">
+							<select
+								className="form-control"
+								id="flightStatus"
+								name="flightStatus"
+								onChange={this.onChange}
+							>
+								<option value="" selected disabled hidden>
+									Select Flight status
+								</option>
+								<option value="ontime">Ontime</option>
+								<option value="cancelled">Cancelled</option>
+							</select>
+						</div>
+
 						<div className="form-group d-sm-flex margin">
 							<div className="d-flex align-items-center flex-fill me-sm1 my-sm-0 border-bottom position-relative">
 								<input

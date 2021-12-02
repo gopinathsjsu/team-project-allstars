@@ -28,8 +28,8 @@ router.post("/:flightName", async (req, res) => {
 				flightStatus: req.body.flightStatus,
 				arrivalDate: req.body.arrivalDate,
 				departureDate: req.body.departureDate,
-				economySeatsCapacity: req.body.economySeatsCapacity,
-				businessSeatsCapacity: req.body.businessSeatsCapacity,
+				departureTime: req.body.departureTime,
+				arrivalTime: req.body.arrivalTime,
 				economySeatPrice: req.body.economySeatPrice,
 				businessSeatPrice: req.body.businessSeatPrice,
 			}
