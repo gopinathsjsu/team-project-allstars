@@ -19,7 +19,7 @@ class Dashboard extends Component {
 		};
 	}
 
-	componentWillMount = async () => {
+	componentDidMount = async () => {
 		axios.defaults.withCredentials = true;
 
 		axios
@@ -59,6 +59,7 @@ class Dashboard extends Component {
 						console.log("response data from search flight is", response.data);
 						if (response.status === 203) {
 							swal("Deleted!", "Flight has been deleted.", "success");
+							window.location.reload();
 						}
 					})
 					.catch((error) => {

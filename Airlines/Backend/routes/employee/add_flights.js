@@ -16,8 +16,8 @@ const flightModel = require("../../models/flightModel");
 router.post("/", async (req, res) => {
 	console.log(req.body);
 
-	const ecoCap = req.body.economySeatsCapacity;
-	const busiCap = req.body.businessSeatsCapacity;
+	const ecoCap = 52;
+	const busiCap = 20;
 	const ecoSeatsBooked = [];
 	const busiSeatsBooked = [];
 	for (var i = 0; i < ecoCap; i++) {
@@ -36,12 +36,14 @@ router.post("/", async (req, res) => {
 		flightStatus: req.body.flightStatus,
 		arrivalDate: req.body.arrivalDate,
 		departureDate: req.body.departureDate,
-		economySeatsCapacity: req.body.economySeatsCapacity,
+		economySeatsCapacity: 52,
 		economySeatsBooked: ecoSeatsBooked,
-		businessSeatsCapacity: req.body.businessSeatsCapacity,
+		businessSeatsCapacity: 20,
 		businessSeatsBooked: busiSeatsBooked,
 		economySeatPrice: req.body.economySeatPrice,
 		businessSeatPrice: req.body.businessSeatPrice,
+		departureTime: req.body.departureTime,
+		arrivalTime: req.body.arrivalTime,
 	});
 	try {
 		await newflight.save();
