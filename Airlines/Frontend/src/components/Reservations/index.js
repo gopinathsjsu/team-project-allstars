@@ -14,6 +14,50 @@ export default class Reservations extends Component {
 		});
 	};
 
+	cancelReservation = (resId) => (e) => {
+		const redirectURL = "http://localhost:3000/reservations";
+		console.log("cancel Reservation");
+		console.log("resId", resId);
+		swal({
+			title: "Are you sure?",
+			text: "It will cancel your reservation",
+			type: "warning",
+			buttons: ["No, Do not cancel !", "Yes, Cancel it !"],
+			// showCancelButton: true,
+			confirmButtonColor: "#3085d6",
+			cancelButtonColor: "#d33",
+			confirmButtonText: "Yes, delete it!",
+		}).then(function (isConfirm) {
+			if (isConfirm) {
+				axios.defaults.withCredentials = true;
+				axios
+					.post(`${Server}/reservation/cancelReservation/${resId}`)
+					.then((response) => {
+						if (response.status === 203) {
+							swal(
+								"Cancelled!",
+								"You reservation has been cancelled",
+								"success"
+							).then((okay) => {
+								if (okay) {
+									window.location = redirectURL;
+								}
+							});
+						}
+					})
+					.catch((error) => {
+						console.log("error:", error);
+						swal(
+							"Oops!",
+							"Could not find the reservation with given details",
+							"error"
+						);
+					});
+			} else {
+				swal("NO Cancelation !", "Your reservation is NOT Cancelled!", "error");
+			}
+		});
+	};
 	componentDidMount = async () => {
 		const _id = localStorage.getItem("user_id");
 		axios.defaults.withCredentials = true;
@@ -84,33 +128,41 @@ export default class Reservations extends Component {
 							<div className="w3-col s1 rt">
 								<b>{res.price}</b>
 							</div>
-
-							<div className="w3-col s1 rt">
-								<button
-									className="w3-button w3-block "
-									style={{
-										backgroundColor: "#009688",
-										borderRadius: "10px",
-										color: "white",
-									}}
-									onClick={() => this.onSelect(res._id)}
-								>
-									Update
-								</button>
+							<div className="w3-col s1">
+								<b>{res.reservationStatus}</b>
 							</div>
-							<div className="w3-col s1 rt">
-								<button
-									className="w3-button w3-block "
-									style={{
-										backgroundColor: "#009688",
-										borderRadius: "10px",
-										color: "white",
-									}}
-									onClick={() => this.onSelect(res._id)}
-								>
-									Cancel
-								</button>
-							</div>
+							{res.reservationStatus === "Cancelled" ? (
+								<div></div>
+							) : (
+								<>
+									<div className="w3-col s1 rt">
+										<button
+											className="w3-button w3-block "
+											style={{
+												backgroundColor: "#009688",
+												borderRadius: "10px",
+												color: "white",
+											}}
+											onClick={() => this.onSelect(res._id)}
+										>
+											Update
+										</button>
+									</div>
+									<div className="w3-col s1 rt">
+										<button
+											className="w3-button w3-block "
+											style={{
+												backgroundColor: "#009688",
+												borderRadius: "10px",
+												color: "white",
+											}}
+											onClick={this.cancelReservation(res._id)}
+										>
+											Cancel
+										</button>
+									</div>
+								</>
+							)}
 						</div>
 						<hr />
 					</>
@@ -162,6 +214,9 @@ export default class Reservations extends Component {
 									</div>
 									<div className="w3-col s1">
 										<b>Price</b>
+									</div>
+									<div className="w3-col s1">
+										<b>Status</b>
 									</div>
 
 									<div className="w3-col s2"></div>
