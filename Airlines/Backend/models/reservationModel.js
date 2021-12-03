@@ -7,14 +7,16 @@ const reservationSchema = new Schema(
     destination: { type: String, trim: true },
     departureDate: { type: Date, trim: true, required: true },
     arrivalDate: { type: Date, required: false },
+    departureTime : {type : String},
+    arrivalTime: {type: String},
     numberOfTravellers: { type: Number },
     travelType: { type: String }, // Economy/Business
     flightId: { type: mongoose.Schema.Types.ObjectId, ref: "flight" },
     travellers: [
       {
-        travellersName: { type: String, trim: true, required: true },
+        firstName: { type: String, trim: true, required: true },
+        lastName: { type: String, trim: true, required: true },
         phoneNumber: { type: String, trim: true, required: true },
-        travellersEmail: { type: String, trim: true, required: true },
         dob: { type: String, trim: true, required: true },
         seatNumber: { type: String, trim: true, required: true },
         gender: {type: String , required: true}

@@ -74,11 +74,13 @@ export default class SearchResults extends Component {
                     arrivalTime: flight.arrivalTime,
                     departureTime: flight.departureTime
                 }
+                localStorage.setItem("selectedFlight", JSON.stringify(flight));
             }
         });
 
         console.log("Reservations: ", reservation);
         localStorage.setItem("reservationDetails", JSON.stringify(reservation));
+        
         this.setState({
             ...this.state,
             reservation: true
