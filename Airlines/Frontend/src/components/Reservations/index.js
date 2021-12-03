@@ -14,93 +14,37 @@ export default class Reservations extends Component {
 		});
 	};
 
-	onSubmitSearch = (e) => {
-		e.preventDefault();
-		// const searchData = {
-		// 	departureFrom: this.state.departureFrom,
-		// 	arrivalAt: this.state.arrivalAt,
-		// 	departureDate: this.state.departureDate,
-		// 	type: this.state.type,
-		// 	travellers: this.state.travellers,
-		// };
-
-		// axios.defaults.withCredentials = true;
-		// axios
-		// 	.post(`${Server}/flight/search`, searchData)
-		// 	.then((response) => {
-		// 		console.log("response data from search flight is", response.data);
-		// 		if (response.status === 200) {
-		// 			this.setState({
-		// 				flights: response.data,
-		// 			});
-		// 			localStorage.setItem("flights", JSON.stringify(response.data));
-		// 			localStorage.setItem("travelType", searchData.type);
-		// 			localStorage.setItem("numberOfTraveller", this.state.travellers);
-		// 		}
-		// 	})
-		// 	.catch((error) => {
-		// 		console.log("error:", error);
-		// 		swal(
-		// 			"",
-		// 			"Sorry! There are no flights for given inputs. Try to search for other dates/places",
-		// 			"warning"
-		// 		);
-		// 	});
-	};
-
-	onSelect = async (id) => {
-		console.log("id----", typeof id);
-		const flights = this.state.flights;
-		let reservation = {};
-		const travelType = localStorage.getItem("travelType");
-		console.log("travelType", travelType);
-		flights.forEach((flight) => {
-			if (id === flight._id) {
-				const price =
-					travelType === "economy"
-						? flight.economySeatPrice
-						: flight.businessSeatPrice;
-				reservation = {
-					origin: flight.departureFrom,
-					destination: flight.arrivalAt,
-					departureDate: flight.departureDate,
-					arrivalDate: flight.arrivalDate,
-					travelType: travelType,
-					flightId: id,
-					price: price,
-					arrivalTime: flight.arrivalTime,
-					departureTime: flight.departureTime,
-				};
-			}
-		});
-
-		console.log("Reservations: ", reservation);
-		localStorage.setItem("reservationDetails", JSON.stringify(reservation));
-		this.setState({
-			...this.state,
-			reservation: true,
-		});
-	};
-
-	componentWillMount = async () => {
-		const flights = JSON.parse(localStorage.getItem("flights"));
-		this.setState({
-			flights: flights,
-		});
+	componentDidMount = async () => {
+		const _id = localStorage.getItem("user_id");
+		axios.defaults.withCredentials = true;
+		axios
+			.get(`${Server}/reservation/showReservation/${_id}`)
+			.then((response) => {
+				console.log("response data from showReservation", response.data);
+				if (response.status === 200) {
+					this.setState({
+						reservations: response.data,
+					});
+				}
+			})
+			.catch((error) => {
+				console.log("error:", error);
+				//swal("", "Sorry! There are no reservations", "warning");
+			});
 	};
 	render() {
-		let flightDetails = "";
-		if (this.state && this.state.flights) {
-			console.log("flightsss", this.state.flights);
-			let flights = {};
-			flights = this.state.flights;
-			flightDetails = flights.map((flight) => {
-				console.log("ID__", flight._id);
+		let reservationDetails = "";
+		if (this.state && this.state.reservations) {
+			console.log("reservations state", this.state.reservations);
+			let reservations = {};
+			reservations = this.state.reservations;
+			console.log("reservations", reservations);
+			reservationDetails = reservations.map((res) => {
 				return (
 					<>
 						<div
 							class="w3-row-padding w3-section"
-							id={flight._id}
+							id={res._id}
 							style={{
 								justifyContent: "center",
 								alignItems: "center",
@@ -109,33 +53,36 @@ export default class Reservations extends Component {
 							}}
 						>
 							<div className="w3-col s1 rt">
-								<b>{flight.flightName}</b>
+								<b>flightName</b>
 							</div>
 							<div className="w3-col s1 rt">
-								<b>Origin</b>
+								<b>{res.origin}</b>
 							</div>
-							<div className="w3-col s2 rt">
-								<b>Destination</b>
+							<div className="w3-col s1 rt">
+								<b>{res.destination}</b>
 							</div>
-							<div className="w3-col s2 rt">
-								<b>{flight.departureDate.split("T")[0]}</b>
+							<div className="w3-col s1 rt">
+								<b>{res.departureDate.split("T")[0]}</b>
 								<p>
-									at {flight.departureDate.split("T")[1].split(":")[0]} :{" "}
-									{flight.departureDate.split("T")[1].split(":")[1]}
-								</p>
-							</div>
-							<div className="w3-col s2 rt">
-								<b>{flight.arrivalDate.split("T")[0]}</b>
-								<p>
-									at {flight.arrivalDate.split("T")[1].split(":")[0]} :{" "}
-									{flight.arrivalDate.split("T")[1].split(":")[1]}
+									at {res.departureDate.split("T")[1].split(":")[0]} :{" "}
+									{res.departureDate.split("T")[1].split(":")[1]}
 								</p>
 							</div>
 							<div className="w3-col s1 rt">
-								<b>Travellers</b>
+								<b>{res.arrivalDate.split("T")[0]}</b>
+								<p>
+									at {res.arrivalDate.split("T")[1].split(":")[0]} :{" "}
+									{res.arrivalDate.split("T")[1].split(":")[1]}
+								</p>
 							</div>
 							<div className="w3-col s1 rt">
-								<b>Price</b>
+								<b>{res.numberOfTravellers}</b>
+							</div>
+							<div className="w3-col s2 rt">
+								<b>Name1, Name2</b>
+							</div>
+							<div className="w3-col s1 rt">
+								<b>{res.price}</b>
 							</div>
 
 							<div className="w3-col s1 rt">
@@ -146,7 +93,7 @@ export default class Reservations extends Component {
 										borderRadius: "10px",
 										color: "white",
 									}}
-									onClick={() => this.onSelect(flight._id)}
+									onClick={() => this.onSelect(res._id)}
 								>
 									Update
 								</button>
@@ -159,7 +106,7 @@ export default class Reservations extends Component {
 										borderRadius: "10px",
 										color: "white",
 									}}
-									onClick={() => this.onSelect(flight._id)}
+									onClick={() => this.onSelect(res._id)}
 								>
 									Cancel
 								</button>
@@ -170,12 +117,9 @@ export default class Reservations extends Component {
 				);
 			});
 		} else {
-			flightDetails = <h1>Loading</h1>;
-			window.location.reload();
+			reservationDetails = <h3>You have no reservations yet</h3>;
 		}
-		if (this.state && this.state.reservation) {
-			return <Redirect to="/travellerinfo" />;
-		}
+
 		return (
 			<div className="searchresults_main">
 				<div
@@ -192,7 +136,7 @@ export default class Reservations extends Component {
 										justifyContent: "center",
 										alignItems: "center",
 										border: "1px black",
-										fontSize: "22px",
+										fontSize: "18px",
 									}}
 								>
 									<div className="w3-col s1">
@@ -201,26 +145,29 @@ export default class Reservations extends Component {
 									<div className="w3-col s1">
 										<b>Origin</b>
 									</div>
-									<div className="w3-col s2">
+									<div className="w3-col s1">
 										<b>Destination</b>
 									</div>
-									<div className="w3-col s2">
+									<div className="w3-col s1">
 										<b>Departure Time</b>
 									</div>
-									<div className="w3-col s2">
+									<div className="w3-col s1">
 										<b>Arrival Time</b>
 									</div>
 									<div className="w3-col s1">
-										<b>Travellers</b>
+										<b>Travelers Count</b>
+									</div>
+									<div className="w3-col s2">
+										<b>Travelers Details</b>
 									</div>
 									<div className="w3-col s1">
 										<b>Price</b>
 									</div>
 
-									<div className="w3-col s3"></div>
+									<div className="w3-col s2"></div>
 								</div>
 								<hr />
-								<div>{flightDetails}</div>
+								<div>{reservationDetails}</div>
 							</div>
 						</div>
 					</div>
