@@ -37,4 +37,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps, null)(TravellerInfo);
+export default connect(mapStateToProps, null)(TravellerInfoPage);

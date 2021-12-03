@@ -5,7 +5,7 @@ import axios from "axios";
 import Server from "../../webConfig";
 import { Redirect } from "react-router-dom";
 import swal from "sweetalert";
-import { FaLightbulb } from "react-icons/fa";
+
 
 export default class SearchResults extends Component {
     state= {
@@ -45,6 +45,7 @@ export default class SearchResults extends Component {
 					})
 					localStorage.setItem("flights", JSON.stringify(response.data));
                     localStorage.setItem("travelType", searchData.type);
+                    localStorage.setItem("numberOfTraveller", this.state.travellers);
 				}
 			})
 			.catch((error) => {
@@ -67,16 +68,17 @@ export default class SearchResults extends Component {
                     destination: flight.arrivalAt,
                     departureDate: flight.departureDate,
                     arrivalDate: flight.arrivalDate,
-                    numberOfTravellers: 1,
                     travelType: travelType,
                     flightId: id,
-                    price: price
+                    price: price,
+                    arrivalTime: flight.arrivalTime,
+                    departureTime: flight.departureTime
                 }
             }
         });
 
         console.log("Reservations: ", reservation);
-        localStorage.setItem("reservationDetails", reservation);
+        localStorage.setItem("reservationDetails", JSON.stringify(reservation));
         this.setState({
             ...this.state,
             reservation: true
@@ -153,9 +155,10 @@ export default class SearchResults extends Component {
             flightDetails = (
                 <h1>Loading</h1>
             )
+            window.location.reload()
         }
         if(this.state && this.state.reservation){
-            return( <Redirect to="/selectseat"/>)
+            return( <Redirect to="/travellerinfo"/>)
         }
         return (
             <div className="searchresults_main">

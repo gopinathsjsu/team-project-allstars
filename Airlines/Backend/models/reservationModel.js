@@ -12,11 +12,12 @@ const reservationSchema = new Schema(
     flightId: { type: mongoose.Schema.Types.ObjectId, ref: "flight" },
     travellers: [
       {
-        travellersName: { type: String, trim: true },
-        phoneNumber: { type: String, trim: true },
-        travellersEmail: { type: String, trim: true },
-        dob: { type: String, trim: true },
-        seatNumber: { type: String, trim: true },
+        travellersName: { type: String, trim: true, required: true },
+        phoneNumber: { type: String, trim: true, required: true },
+        travellersEmail: { type: String, trim: true, required: true },
+        dob: { type: String, trim: true, required: true },
+        seatNumber: { type: String, trim: true, required: true },
+        gender: {type: String , required: true}
       },
     ],
     bookedBy: { type: mongoose.Schema.Types.ObjectId, ref: "passenger" },
