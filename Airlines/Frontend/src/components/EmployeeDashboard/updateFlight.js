@@ -81,9 +81,24 @@ class UpdateFlight extends Component {
 							</Modal.Title>
 						</Modal.Header>
 						<Modal.Body>
-							<div className="">
+							<div className="row">
+								<div className="row">
+									<div className="col-4">Flight Name</div>
+									<div className="col-8">
+										<input
+											type="text"
+											id="name"
+											name="flightName"
+											placeholder="Flight Name"
+											onChange={this.onChange}
+											className="form-control"
+											defaultValue={this.props.flighData.flightName}
+										/>
+									</div>
+								</div>
+
 								{/* main1 wrapper bg-white */}
-								<div className="">
+								<div className="col">
 									<form onSubmit={this.onSubmitUpdate}>
 										<div className="d-flex align-items-center flex-fill me-sm-1 my-sm-0 my-4 border-bottom position-relative">
 											<input
@@ -108,7 +123,6 @@ class UpdateFlight extends Component {
 												defaultValue={this.props.flighData.departureFrom}
 											/>
 											<div className="label" id="from"></div>{" "}
-											<span className="fas fa-dot-circle text-muted"></span>
 										</div>
 
 										<div className="d-flex align-items-center flex-fill ms-sm-1 my-sm-0 my-4 border-bottom position-relative">
@@ -122,7 +136,6 @@ class UpdateFlight extends Component {
 												defaultValue={this.props.flighData.arrivalAt}
 											/>
 											<div className="label" id="to"></div>{" "}
-											<span className="fas fa-map-marker text-muted"></span>
 										</div>
 
 										<div className="d-flex align-items-center flex-fill me-sm1 my-sm-0 border-bottom position-relative">
