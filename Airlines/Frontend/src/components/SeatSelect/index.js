@@ -111,7 +111,7 @@ export default class SeatSelect extends Component {
                                     }}
                                 >
                                     <div className="w3-col s3">
-                                        <b>FlightNaME</b>
+                                        <b>FlightName</b>
                                     </div>
 									<div className="w3-col s2">
 									<b>{reservationDetails.origin}</b>
