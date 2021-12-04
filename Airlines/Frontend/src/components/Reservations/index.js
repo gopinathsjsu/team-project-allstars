@@ -76,6 +76,14 @@ export default class Reservations extends Component {
 				//swal("", "Sorry! There are no reservations", "warning");
 			});
 	};
+
+	getFullnames = (tDetails) => {
+		if (tDetails && tDetails.length > 0) {
+			return Array.prototype.map
+				.call(tDetails, (t) => t.firstName + " " + t.lastName)
+				.toString();
+		} else return "";
+	};
 	render() {
 		let reservationDetails = "";
 		if (this.state && this.state.reservations) {
@@ -83,6 +91,7 @@ export default class Reservations extends Component {
 			let reservations = {};
 			reservations = this.state.reservations;
 			console.log("reservations", reservations);
+
 			reservationDetails = reservations.map((res) => {
 				return (
 					<>
@@ -97,7 +106,7 @@ export default class Reservations extends Component {
 							}}
 						>
 							<div className="w3-col s1 rt">
-								<b>flightName</b>
+								<b>{res.flight}</b>
 							</div>
 							<div className="w3-col s1 rt">
 								<b>{res.origin}</b>
@@ -107,26 +116,20 @@ export default class Reservations extends Component {
 							</div>
 							<div className="w3-col s1 rt">
 								<b>{res.departureDate.split("T")[0]}</b>
-								<p>
-									at {res.departureDate.split("T")[1].split(":")[0]} :{" "}
-									{res.departureDate.split("T")[1].split(":")[1]}
-								</p>
+								<p>at {res.departureTime}</p>
 							</div>
 							<div className="w3-col s1 rt">
 								<b>{res.arrivalDate.split("T")[0]}</b>
-								<p>
-									at {res.arrivalDate.split("T")[1].split(":")[0]} :{" "}
-									{res.arrivalDate.split("T")[1].split(":")[1]}
-								</p>
+								<p>at {res.arrivalTime}</p>
 							</div>
 							<div className="w3-col s1 rt">
 								<b>{res.numberOfTravellers}</b>
 							</div>
 							<div className="w3-col s2 rt">
-								<b>Name1, Name2</b>
+								<b>{this.getFullnames(res.travellers)}</b>
 							</div>
 							<div className="w3-col s1 rt">
-								<b>{res.price}</b>
+								<b>${res.price}</b>
 							</div>
 							<div className="w3-col s1">
 								<b>{res.reservationStatus}</b>
