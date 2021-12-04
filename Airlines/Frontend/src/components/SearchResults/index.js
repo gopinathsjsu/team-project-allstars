@@ -59,11 +59,13 @@ export default class SearchResults extends Component {
         const flights = this.state.flights;
         let reservation ={}
         const travelType = localStorage.getItem("travelType");
+        const numberOfTraveller = parseInt(localStorage.getItem("numberOfTraveller"));
         console.log("travelType", travelType);
         flights.forEach(flight => {
             if(id === flight._id){
-                const price = travelType === "economy" ? flight.economySeatPrice : flight.businessSeatPrice
+                const price = travelType === "economy" ? flight.economySeatPrice*numberOfTraveller : flight.businessSeatPrice*numberOfTraveller
                 reservation = {
+                    flight: flight.flightName,
                     origin: flight.departureFrom,
                     destination: flight.arrivalAt,
                     departureDate: flight.departureDate,

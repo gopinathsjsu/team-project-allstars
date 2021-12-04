@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const reservationSchema = new Schema(
   {
+    flight : {type: String, trim: true},
     origin: { type: String, trim: true },
     destination: { type: String, trim: true },
     departureDate: { type: Date, trim: true, required: true },
