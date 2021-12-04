@@ -64,7 +64,8 @@ class UpdateFlight extends Component {
           swal("Success!", "Flight updated successfully!", "success").then(
             (okay) => {
               if (okay) {
-                window.location = redirectURL;
+                //window.location = redirectURL;
+                window.location.reload();
               }
             }
           );
