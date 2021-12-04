@@ -182,7 +182,15 @@ export default class Reservations extends Component {
 					style={{ maxWidth: "1400px" }}
 				>
 					<div className="w3-row-padding">
-						<h3>My Reservations</h3>
+						<h2 class="w3-text-grey w3-padding-16">
+							<i
+								class="
+                                    fa fa-plane fa-fw
+                                    w3-margin-right w3-xxlarge w3-text-teal
+                                "
+							></i>
+							My Reservations
+						</h2>
 						<div className="">
 							<div className="w3-container w3-card w3-white w3-margin-bottom">
 								<div
@@ -213,7 +221,7 @@ export default class Reservations extends Component {
 										<b>Travelers Count</b>
 									</div>
 									<div className="w3-col s2">
-										<b>Travelers Details</b>
+										<b>Travelers</b>
 									</div>
 									<div className="w3-col s1">
 										<b>Price</b>

@@ -20,6 +20,7 @@ router.post("/:resId", async (req, res) => {
 		console.log("Reservation Details", reservation);
 		const mileagePointsEarned = reservation.mileagePointsEarned;
 		const mileagePointsUsed = reservation.mileagePointsUsed;
+		const travellers = reservation.travellers;
 		//if (req.body.paidWithPoints == 1) {
 		psgDet.mileagePoints =
 			psgDet.mileagePoints - mileagePointsEarned + mileagePointsUsed;
@@ -46,9 +47,15 @@ router.post("/:resId", async (req, res) => {
 		console.log("Index value", index);
 		if (existingFlight) {
 			if (reservation.travelType.toLowerCase() == "economy") {
-				existingFlight.economySeatsBooked[index] = false;
+				travellers.forEach((t) => {
+					existingFlight.economySeatsBooked[t.seatNumber - 1] = false;
+				});
+				//existingFlight.economySeatsBooked[index] = false;
 			} else if (reservation.travelType.toLowerCase() == "business") {
-				existingFlight.businessSeatsBooked[index] = false;
+				travellers.forEach((t) => {
+					existingFlight.businessSeatsBooked[t.seatNumber - 1] = false;
+				});
+				//existingFlight.businessSeatsBooked[index] = false;
 			}
 			existingFlight.save();
 			console.log("Existing Flight", existingFlight);
@@ -57,7 +64,7 @@ router.post("/:resId", async (req, res) => {
 		}
 
 		reservation.save();
-		res.status(202).json({ message: "Reservation cancelled" });
+		res.status(203).json({ message: "Reservation cancelled" });
 	} catch (error) {
 		res.status(401).json({ message: error.message });
 	}
