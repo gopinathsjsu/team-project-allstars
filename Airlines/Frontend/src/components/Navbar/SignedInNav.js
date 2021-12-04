@@ -42,7 +42,16 @@ class SignedInNav extends Component {
       <>
         <Nav>
           <NavLink to="/dashboard">
-            <h1>ALL STAR AIRLINES</h1>
+            {/* <h3>All Star Airlines</h3> */}
+            <h3 class=" w3-padding-16">
+              <i
+                class="
+                                    fa fa-plane fa-fw
+                                    w3-margin-right w3-xxlarge w3-text-teal
+                                "
+              ></i>
+              All Star Airlines
+            </h3>
           </NavLink>
           <Bars onClick={toggle}> </Bars>
           <NavMenu>

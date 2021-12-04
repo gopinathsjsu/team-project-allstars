@@ -22,6 +22,7 @@ export default class Reservations extends Component {
   };
 
   cancelReservation = (resId) => (e) => {
+    let originalMileagePoints = parseInt(localStorage.getItem("mileagePoints"));
     const redirectURL = "http://localhost:3000/reservations";
     console.log("cancel Reservation");
     console.log("resId", resId);
@@ -40,7 +41,9 @@ export default class Reservations extends Component {
         axios
           .post(`${Server}/reservation/cancelReservation/${resId}`)
           .then((response) => {
+            console.log("response", response);
             if (response.status === 203) {
+              localStorage.setItem("mileagePoints", response.data);
               swal(
                 "Cancelled!",
                 "You reservation has been cancelled",
@@ -98,6 +101,20 @@ export default class Reservations extends Component {
         .toString();
     } else return "";
   };
+
+  getSeats = (tDetails, travelType) => {
+    if (tDetails && tDetails.length > 0) {
+      if (travelType.toLowerCase() == "economy") {
+        return Array.prototype.map
+          .call(tDetails, (t) => parseInt(t.seatNumber) + 20)
+          .toString();
+      } else {
+        return Array.prototype.map
+          .call(tDetails, (t) => t.seatNumber)
+          .toString();
+      }
+    } else return "";
+  };
   render() {
     let reservationDetails = "";
     if (this.state && this.state.reservations) {
@@ -136,11 +153,14 @@ export default class Reservations extends Component {
                 <b>{res.arrivalDate.split("T")[0]}</b>
                 <p>at {res.arrivalTime}</p>
               </div>
-              <div className="w3-col s1 rt">
+              {/* <div className="w3-col s1 rt">
                 <b>{res.numberOfTravellers}</b>
-              </div>
+              </div> */}
               <div className="w3-col s2 rt">
                 <b>{this.getFullnames(res.travellers)}</b>
+              </div>
+              <div className="w3-col s1 rt">
+                <b>{this.getSeats(res.travellers, res.travelType)}</b>
               </div>
               <div className="w3-col s1 rt">
                 <b>${res.price}</b>
@@ -237,11 +257,14 @@ export default class Reservations extends Component {
                   <div className="w3-col s1">
                     <b>Arrival Time</b>
                   </div>
-                  <div className="w3-col s1">
+                  {/* <div className="w3-col s1">
                     <b>Travelers Count</b>
-                  </div>
+                  </div> */}
                   <div className="w3-col s2">
                     <b>Travelers</b>
+                  </div>
+                  <div className="w3-col s1">
+                    <b>Seats No</b>
                   </div>
                   <div className="w3-col s1">
                     <b>Price</b>
