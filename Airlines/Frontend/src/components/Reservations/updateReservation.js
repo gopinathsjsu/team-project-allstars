@@ -4,6 +4,7 @@ import { Button, Modal } from "react-bootstrap";
 import axios from "axios";
 import swal from "sweetalert";
 import Server from "../../webConfig";
+import FrontendServer from "../../webConfig";
 import { Multiselect } from "multiselect-react-dropdown";
 
 class UpdateReservation extends Component {
@@ -124,8 +125,8 @@ class UpdateReservation extends Component {
 
     console.log(reservations);
 
-    const redirectURL = "http://localhost:3000/reservations";
-
+    // const redirectURL = `${FrontendServer}/reservations`;
+    // console.log("redirectURL", redirectURL);
     axios.defaults.withCredentials = true;
     axios
       .post(`${Server}/reservation/update/res/${reservationId}`, reservations)
@@ -138,7 +139,7 @@ class UpdateReservation extends Component {
             "success"
           ).then((okay) => {
             if (okay) {
-              window.location = redirectURL;
+              window.location.reload(); //= redirectURL;
             }
           });
         }

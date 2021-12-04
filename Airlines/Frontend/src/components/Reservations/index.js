@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import plane from "../../images/plane.jpg";
 import axios from "axios";
 import Server from "../../webConfig";
+import FrontendServer from "../../webConfig";
 import { Redirect } from "react-router-dom";
 import swal from "sweetalert";
 import UpdateReservation from "./updateReservation";
@@ -23,7 +24,7 @@ export default class Reservations extends Component {
 
   cancelReservation = (resId) => (e) => {
     let originalMileagePoints = parseInt(localStorage.getItem("mileagePoints"));
-    const redirectURL = "http://localhost:3000/reservations";
+    const redirectURL = `${FrontendServer}/reservations`;
     console.log("cancel Reservation");
     console.log("resId", resId);
     swal({
