@@ -23,12 +23,16 @@ export default class SeatSelect extends Component {
       };
 
     componentDidMount = () => {
-        // const reservation = JSON.parse(localStorage.getItem("reservationDetails"));
         const travelType = localStorage.getItem("travelType");
-     //   const reservation_id = reservation.flightId;
-        const selectedflight = JSON.parse(localStorage.getItem("selectedFlight"));
+        const flights = JSON.parse(localStorage.getItem("flights"));
+        const flightId = localStorage.getItem("flightId");
+        let selectedflight;
+        flights.forEach(flight => {
+            if(flight._id === flightId){
+                selectedflight = flight
+            }
+        })
         const seatAvailable = travelType === "economy" ? selectedflight.economySeatsBooked : selectedflight.businessSeatsBooked; 
-        console.log("Selected Seats", seatAvailable);
         let seatavailable = []
         let count = 0
         if(travelType === "economy"){
@@ -37,17 +41,31 @@ export default class SeatSelect extends Component {
         
 
         seatAvailable.forEach(seat => {
-            if( seat === false){
+            if(count<72){
+            console.log(seat) 
+            if(seat){
                 count+=1;
-                seatavailable.push({
-                    label: count,
-                    value : count
-                });
+                console.log("in if", count);
             }else{
                 count+=1;
+                console.log("in else", count);
+                if(travelType === "economy"){
+                    seatavailable.push({
+                        label: count,
+                        value : count - 20
+                    });
+                }else{
+                    seatavailable.push({
+                        label: count,
+                        value : count
+                    });
+                }
+                
             }
-            
+            }
         })
+
+
         console.log("Seat Available", seatavailable);
         this.setState({
             seatAvailable: seatavailable
@@ -79,7 +97,6 @@ export default class SeatSelect extends Component {
         if(this.state.continue){
             return( <Redirect to="/confirmation" />)
         }
-        // const {selectedOption} = this.state;
         console.log("Seat Avails;;dd", this.state.seatAvailable);
         let reservationDetails = JSON.parse(localStorage.getItem("reservationDetails"));
 		let selectedFlightDetails = (
@@ -197,7 +214,7 @@ export default class SeatSelect extends Component {
                                 placeholder="Select seat(s)"
                                 onSelect={this.onSelect}
                                 
-                                style={{ chips: { background: '#009688' } }}
+                                style={{ chips: { background: '#009688' }, color:"black" }}
                                 />
                           
 
@@ -206,27 +223,28 @@ export default class SeatSelect extends Component {
 						
                     </div>
 
-                    <div className="w3-row-padding w3-section w3-opacity"
-					style={{
-						justifyContent: "center",
-						alignItems: "center",
-						border: "1px black",
-						fontSize: "22px",
-					}}>
-					<button
-												className="w3-button w3-block w3-left-align"
-												style={{
-													backgroundColor: "#009688",
-													borderRadius: "10px",
-													color: "white",
-												}}
-												onClick = {this.onContinue}
-											>
-												
-												Continue{" "}
-												<i className="fa fa-arrow-right w3-margin-right"></i>{" "}
-											</button>
-					</div>
+                    <br/>
+
+                    <div class="w3-row">
+                                    <div class="w3-half w3-container" style={{textAlign: "left"}}>
+    
+                                    </div>
+                                    <div class="w3-half w3-container" style={{textAlign: "right"}}>
+                                    <button
+                                    className="w3-button w3-block w3-left-align"
+                                    style={{
+                                        backgroundColor: "#009688",
+                                        borderRadius: "10px",
+                                        color: "white",
+                                    }}
+                                    onClick = {this.onContinue}
+                                >
+                                    
+                                    Continue{" "}
+                                    <i className="fa fa-arrow-right w3-margin-right"></i>{" "}
+                                </button>
+                                    </div>
+                                </div>
 					
                         </div>
                     </div>

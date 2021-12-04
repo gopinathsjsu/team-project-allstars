@@ -77,6 +77,8 @@ export default class SearchResults extends Component {
                     departureTime: flight.departureTime
                 }
                 localStorage.setItem("selectedFlight", JSON.stringify(flight));
+                localStorage.setItem("flightId", flight._id);
+
             }
         });
 

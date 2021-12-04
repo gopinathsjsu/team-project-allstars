@@ -113,6 +113,7 @@ color: #009688;
 display: flex;
 align-items: center;
 text-decoration: none;
+justify-content: center;
 padding: 0 1rem;
 height: 100%;
 //cursor: pointer;

@@ -23,6 +23,9 @@ class SignedInSidebar extends Component {
         const Points = (type === "PASSENGER") ?(
             <Pts activeStyle> Mileage Pts: {mileagePoints}</Pts>
           ) : (<></>)
+        const SearchIcon = (type === "PASSENGER") ? (<SidebarLinkProfile to='/dashboard' activeStyle>
+        <i class="fa fa-search" aria-hidden="true"> Search</i>
+        </SidebarLinkProfile>) : (<></>)
         return (
             <SidebarContainer isOpen={isOpen} onClick={toggle}>
                 <Icon>
@@ -31,9 +34,11 @@ class SignedInSidebar extends Component {
                 <SidebarWrapper>
                     <SidebarMenu>
                         {Points}
-                        <SidebarLinkProfile to="/profile" onClick={toggle}>
-                            {user}
+                        {SearchIcon}
+                        <SidebarLinkProfile to="/reservations" onClick={toggle}>
+                            Your Reservations
                         </SidebarLinkProfile>
+                        <Pts style={{color:"tomato", textAlign:"center"}}>{user}</Pts>
                     </SidebarMenu>
                     <SideBtnWrap>
                         <SidebarRoute onClick={this.props.signOut}>

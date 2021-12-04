@@ -16,21 +16,33 @@ export default class Confirmation extends Component {
         })
     }
 
-    payByMileage = () => {
+    payByMileage = (totalAmount) => {
         const mileagePoints = parseInt(localStorage.getItem("mileagePoints"));
+        let mileagePointsToUse = 0 ;
         if(!mileagePoints){
             swal("Opps!", "You don't have any mileage points left in your account", "warning");
         }
-        this.setState({
-            ...this.state,
-            useMileagePoints : true,
-            mileagePoints: mileagePoints
-        })
+        if(mileagePoints >= totalAmount){
+            mileagePointsToUse = totalAmount;
+            this.setState({
+                ...this.state,
+                useMileagePoints : true,
+                mileagePoints: mileagePointsToUse
+            })
+        }else{
+            this.setState({
+                ...this.state,
+                useMileagePoints : true,
+                mileagePoints: mileagePoints
+            })
+        }
+
+        
     }
 
     payByMoney = (totalAmount) => {
+        let originalMileagePoints = parseInt(localStorage.getItem("mileagePoints"));
         const reservations = this.state.reservations;
-        // console.log("Reservations 123", reservations);
         reservations.numberOfTravellers = localStorage.getItem("numberOfTraveller");
         reservations.bookedBy = localStorage.getItem("user_id");
         reservations.reservationStatus = "Booked";
@@ -40,11 +52,9 @@ export default class Confirmation extends Component {
             reservations.mileagePointsUsed = this.state.mileagePoints;
         }else{
             reservations.mileagePointsUsed = 0;
-            
         }
 
         console.log("Reservations 123", reservations);
-        // swal("Booking Confirmed",`You got ${ reservations.mileagePointsEarned} for this Booking.`, "success")
         axios.defaults.withCredentials = true;
 		axios
 			.post(`${Server}/passenger/reservation`, reservations)
@@ -52,6 +62,8 @@ export default class Confirmation extends Component {
 				console.log("response data from search flight is", response.data);
 				if (response.status === 200 ) {
                     swal("Booking Confirmed",`You got ${reservations.mileagePointsEarned} for this Booking.`, "success")
+                    let mileagePoints = originalMileagePoints +  reservations.mileagePointsEarned - reservations.mileagePointsUsed;
+                    localStorage.setItem("mileagePoints", mileagePoints);
                     this.setState({
                         continue: true
                     })
@@ -65,7 +77,7 @@ export default class Confirmation extends Component {
 
     render() {
         if(this.state && this.state.continue){
-			return ( <Redirect to="/seatselect" / >)
+			return ( <Redirect to="/reservations" / >)
 		}
         let selectedFlightDetails = ""
         let travellersDetails = ""
@@ -353,7 +365,7 @@ export default class Confirmation extends Component {
 													color: "white",
                                                     textAlign:"center"
 												}}
-												onClick = {this.payByMileage}
+												onClick = {() => this.payByMileage(totalAmount)}
 											>
 											Use Mileage Points : {localStorage.getItem("mileagePoints")}
 											</button>

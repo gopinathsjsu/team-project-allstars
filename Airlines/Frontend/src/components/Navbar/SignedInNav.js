@@ -12,24 +12,31 @@ class SignedInNav extends Component {
         const Points = (type === "PASSENGER") ?(
           <Pts activeStyle> Mileage Pts: {mileagePoints}</Pts>
         ) : (<></>)
+        const SearchIcon = (type === "PASSENGER") ? (
+        <NavLink to='/dashboard' activeStyle>
+          <i class="fa fa-search" aria-hidden="true"></i>
+        </NavLink>
+        ) : (<></>)
         return (
             <>
-               <Nav>
-                <NavLink to="/">
+              <Nav>
+                <NavLink to="/dashboard">
                     <h1>LOGO</h1>
                 </NavLink>
                 <Bars onClick = {toggle}> </Bars>
                 <NavMenu>
+                    {SearchIcon}
                     {Points}
                     <NavLink to='/reservations' activeStyle>
-                        {user}
+                        Your Reservations
                     </NavLink>
+                    <Pts style={{color:"tomato"}}>{user}</Pts>
                     <NavBtnLink onClick = {this.props.signOut} to=''>Logout</NavBtnLink>
                 </NavMenu>
                 {/*<NavBtn>
                     <NavBtnLink to='/signin'>Sign In</NavBtnLink>
                 </NavBtn>*/}
-               </Nav> 
+              </Nav> 
             </>
         )
     }

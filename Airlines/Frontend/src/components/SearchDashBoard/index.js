@@ -61,12 +61,7 @@ class SearchDashBoard extends Component {
 							<h4>Book a flight</h4>
 						</div>
 
-						<div className="form-group border-bottom d-flex align-items-center">
-							{" "}
-							<label className="option my-sm-0 my-2" />{" "}
-							<input type="radio" name="radio" checked />
-							<label className="option my-sm-0 my-2" /> One Way{" "}
-						</div>
+						
 						<div className="form-group d-sm-flex margin">
 							<div className="d-flex align-items-center flex-fill me-sm-1 my-sm-0 my-4 border-bottom position-relative">
 								<input
@@ -115,7 +110,7 @@ class SearchDashBoard extends Component {
 									onChange={this.onChange}
 								>
 									<option value="" selected disabled hidden>
-										Select Booking type
+										Select Seat type
 									</option>
 									<option value="economy">Economy</option>
 									<option value="business">Business</option>
@@ -130,7 +125,7 @@ class SearchDashBoard extends Component {
 								id="travellers"
 								name="travellers"
 								min="1"
-								placeholder="Traveller(s)"
+								placeholder="No. of Traveller(s)"
 								className="form-control"
 								onChange={this.onChange}
 							/>
