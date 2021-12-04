@@ -4,6 +4,7 @@ import { Button, Modal } from "react-bootstrap";
 import axios from "axios";
 import swal from "sweetalert";
 import Server from "../../webConfig";
+import FrontendServer from "../../FrontendConfig";
 
 class UpdateFlight extends Component {
   constructor() {
@@ -31,7 +32,7 @@ class UpdateFlight extends Component {
 
   onSubmitUpdate = (e) => {
     e.preventDefault();
-    const redirectURL = "http://localhost:3000/employee/dashboard";
+    const redirectURL = `${FrontendServer}/employee/dashboard`;
 
     const updateFlightData = {
       flightName: this.state.flightName || this.props.flighData.flightName,

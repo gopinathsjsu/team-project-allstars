@@ -3,10 +3,11 @@ import axios from "axios";
 import Server from "../../webConfig";
 import swal from "sweetalert";
 import Button from "@restart/ui/esm/Button";
+import FrontendServer from "../../FrontendConfig";
 
 class AddFlight extends Component {
   onSubmit = (e) => {
-    const redirectURL = "http://localhost:3000/employee/dashboard";
+    const redirectURL = `${FrontendServer}/employee/dashboard`;
     e.preventDefault();
     console.log("form submit");
     const data = {

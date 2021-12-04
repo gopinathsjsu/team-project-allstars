@@ -10,6 +10,7 @@ import "./employeeDashboard.css";
 import { Link } from "react-router-dom";
 import swal from "sweetalert";
 import UpdateFlight from "./updateFlight";
+import FrontendServer from "../../FrontendConfig";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -39,7 +40,7 @@ class Dashboard extends Component {
   };
 
   cancelFlight = (flightName) => (e) => {
-    const redirectURL = "http://localhost:3000/employee/dashboard";
+    const redirectURL = `${FrontendServer}/employee/dashboard`;
     console.log("cancel flight");
     console.log(flightName);
     swal({
@@ -85,7 +86,6 @@ class Dashboard extends Component {
     console.log("data to send to modal", this.state);
     return (
       <div className="container">
-        
         <Link to="/employee/addFlight" className="btn btn-primary">
           Add new flight
         </Link>
@@ -109,8 +109,8 @@ class Dashboard extends Component {
                 economySeatsCapacity: data.economySeatsCapacity,
                 flightName: data.flightName,
                 flightStatus: data.flightStatus,
-				arrivalTime: data.arrivalTime,
-				departureTime: data.departureTime,
+                arrivalTime: data.arrivalTime,
+                departureTime: data.departureTime,
               };
               console.log("flightData", flightData);
               return (
