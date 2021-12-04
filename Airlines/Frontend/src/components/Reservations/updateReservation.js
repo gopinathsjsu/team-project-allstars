@@ -136,7 +136,11 @@ class UpdateReservation extends Component {
             "Success!",
             "Seats have been updated in your reservation successfully!",
             "success"
-          );
+          ).then((okay) => {
+            if (okay) {
+              window.location = redirectURL;
+            }
+          });
         }
       })
       .catch((error) => {
