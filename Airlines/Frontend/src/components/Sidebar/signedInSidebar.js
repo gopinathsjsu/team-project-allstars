@@ -22,10 +22,13 @@ class SignedInSidebar extends Component {
         const type = localStorage.getItem("type");
         const Points = (type === "PASSENGER") ?(
             <Pts activeStyle> Mileage Pts: {mileagePoints}</Pts>
-          ) : (<></>)
+        ) : (<></>)
         const SearchIcon = (type === "PASSENGER") ? (<SidebarLinkProfile to='/dashboard' activeStyle>
         <i class="fa fa-search" aria-hidden="true"> Search</i>
         </SidebarLinkProfile>) : (<></>)
+        const yourReservations = (type === "PASSENGER") ? (<SidebarLinkProfile to="/reservations" onClick={toggle}>
+        Your Reservations
+    </SidebarLinkProfile>):(<></>)
         return (
             <SidebarContainer isOpen={isOpen} onClick={toggle}>
                 <Icon>
@@ -35,9 +38,7 @@ class SignedInSidebar extends Component {
                     <SidebarMenu>
                         {Points}
                         {SearchIcon}
-                        <SidebarLinkProfile to="/reservations" onClick={toggle}>
-                            Your Reservations
-                        </SidebarLinkProfile>
+                        {yourReservations}
                         <Pts style={{color:"tomato", textAlign:"center"}}>{user}</Pts>
                     </SidebarMenu>
                     <SideBtnWrap>

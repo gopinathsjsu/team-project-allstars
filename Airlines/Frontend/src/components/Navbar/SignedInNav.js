@@ -17,6 +17,11 @@ class SignedInNav extends Component {
           <i class="fa fa-search" aria-hidden="true"></i>
         </NavLink>
         ) : (<></>)
+        const yourReservations = (type === "PASSENGER") ? (
+          <NavLink to='/reservations' activeStyle>
+                        Your Reservations
+                    </NavLink>
+        ): (<></>)
         return (
             <>
               <Nav>
@@ -27,9 +32,7 @@ class SignedInNav extends Component {
                 <NavMenu>
                     {SearchIcon}
                     {Points}
-                    <NavLink to='/reservations' activeStyle>
-                        Your Reservations
-                    </NavLink>
+                    {yourReservations}
                     <Pts style={{color:"tomato"}}>{user}</Pts>
                     <NavBtnLink onClick = {this.props.signOut} to=''>Logout</NavBtnLink>
                 </NavMenu>

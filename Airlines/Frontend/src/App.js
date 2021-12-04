@@ -6,7 +6,7 @@ import DashBoardPage from "./pages/dashboard";
 import SearchResultsPage from "./pages/searchresults";
 import LandingPage from "./pages/landing";
 import "bootstrap/dist/css/bootstrap.min.css";
-import EmployeeDashboard from "./pages/employeeDashboard";
+import EmployeeDashboardPage from "./pages/employeeDashboard";
 import FlightAddition from "./pages/addFlight";
 import TravellerInfoPage from "./pages/travellerInfo";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -37,7 +37,7 @@ function App() {
 					<Route
 						exact
 						path="/employee/dashboard"
-						component={EmployeeDashboard}
+						component={EmployeeDashboardPage}
 					></Route>
 					<Route
 						exact
