@@ -85,13 +85,9 @@ class Dashboard extends Component {
     console.log("data to send to modal", this.state);
     return (
       <div className="container">
-        <h5>
-          <center>
-            <strong>Employee Dashboard</strong>
-          </center>
-        </h5>
+        
         <Link to="/employee/addFlight" className="btn btn-primary">
-          Add FLights
+          Add new flight
         </Link>
         <Container>
           <Row xs={3}>

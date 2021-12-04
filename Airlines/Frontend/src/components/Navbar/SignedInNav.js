@@ -27,28 +27,27 @@ class SignedInNav extends Component {
         <NavLink to="/dashboard" activeStyle>
           <i class="fa fa-search" aria-hidden="true"></i>
         </NavLink>
-      ) : (
-        <></>
-      );
-    return (
-      <>
-        <Nav>
-          <NavLink to="/dashboard">
-            <h1>ALL STAR AIRLINES</h1>
-          </NavLink>
-          <Bars onClick={toggle}> </Bars>
-          <NavMenu>
-            {SearchIcon}
-            {Points}
-            <NavLink to="/reservations" activeStyle>
-              Your Reservations
-            </NavLink>
-            <Pts style={{ color: "tomato" }}>{user}</Pts>
-            <NavBtnLink onClick={this.props.signOut} to="">
-              Logout
-            </NavBtnLink>
-          </NavMenu>
-          {/*<NavBtn>
+        ) : (<></>)
+        const yourReservations = (type === "PASSENGER") ? (
+          <NavLink to='/reservations' activeStyle>
+                        Your Reservations
+                    </NavLink>
+        ): (<></>)
+        return (
+            <>
+              <Nav>
+                <NavLink to="/dashboard">
+                    <h1>LOGO</h1>
+                </NavLink>
+                <Bars onClick = {toggle}> </Bars>
+                <NavMenu>
+                    {SearchIcon}
+                    {Points}
+                    {yourReservations}
+                    <Pts style={{color:"tomato"}}>{user}</Pts>
+                    <NavBtnLink onClick = {this.props.signOut} to=''>Logout</NavBtnLink>
+                </NavMenu>
+                {/*<NavBtn>
                     <NavBtnLink to='/signin'>Sign In</NavBtnLink>
                 </NavBtn>*/}
         </Nav>
