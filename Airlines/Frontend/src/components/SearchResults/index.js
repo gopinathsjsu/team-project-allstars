@@ -124,26 +124,18 @@ export default class SearchResults extends Component {
                 fontSize: "15px",
               }}
             >
-              <div className="w3-col s2 rt">
+              <div className="w3-col s3 rt">
                 <b>{flight.flightName}</b>
               </div>
-              <div className="w3-col s2 rt">
+              <div className="w3-col s3 rt">
                 <b>{flight.departureDate.split("T")[0]}</b>
-                <p>
-                  at {flight.departureDate.split("T")[1].split(":")[0]} :{" "}
-                  {flight.departureDate.split("T")[1].split(":")[1]}
-                </p>
+                <p>at {flight.departureTime}</p>
               </div>
               <div className="w3-col s2 rt">
                 <b>{flight.arrivalDate.split("T")[0]}</b>
-                <p>
-                  at {flight.arrivalDate.split("T")[1].split(":")[0]} :{" "}
-                  {flight.arrivalDate.split("T")[1].split(":")[1]}
-                </p>
+                <p>at {flight.arrivalTime}</p>
               </div>
-              <div className="w3-col s2 rt">
-                <b>Duration</b>
-              </div>
+
               <div className="w3-col s2 rt">
                 <b>{flight.economySeatPrice}</b>
               </div>
@@ -293,18 +285,16 @@ export default class SearchResults extends Component {
                     fontSize: "22px",
                   }}
                 >
-                  <div className="w3-col s2">
+                  <div className="w3-col s3">
                     <b>Flight</b>
                   </div>
-                  <div className="w3-col s2">
-                    <b>Depart</b>
+                  <div className="w3-col s3">
+                    <b>Departure</b>
                   </div>
                   <div className="w3-col s2">
-                    <b>Arrive</b>
+                    <b>Arrival</b>
                   </div>
-                  <div className="w3-col s2">
-                    <b>Duration</b>
-                  </div>
+
                   <div className="w3-col s2">
                     <b>Price($)</b>
                   </div>
