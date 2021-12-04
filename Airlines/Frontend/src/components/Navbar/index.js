@@ -10,7 +10,7 @@ export default class Navbar extends Component {
             <>
                <Nav>
                 <NavLink to="/">
-                    <h1>LOGO</h1>
+                    <h1>ALL STAR AIRLINES</h1>
                 </NavLink>
                 <Bars onClick = {toggle}> </Bars>
                 <NavMenu>

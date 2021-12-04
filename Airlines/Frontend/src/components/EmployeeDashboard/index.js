@@ -109,6 +109,8 @@ class Dashboard extends Component {
                 economySeatsCapacity: data.economySeatsCapacity,
                 flightName: data.flightName,
                 flightStatus: data.flightStatus,
+				arrivalTime: data.arrivalTime,
+				departureTime: data.departureTime,
               };
               console.log("flightData", flightData);
               return (
