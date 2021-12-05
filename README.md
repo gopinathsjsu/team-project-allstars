@@ -11,6 +11,18 @@ Functionalities were developed and tracked during each Sprint using Scrum task s
 <li> Sindhana Krishnamurthy</li>
 <li> Shantanu Papal</li>
 
+<h2> Areas of Contribution </h2>
+<li> Front end : Payal Ghule,Shantanu Papal, Madhuri Dhani Venu </li>
+<li> Backend : Madhuri Dhani Venu, Sindhana Krishnamurthy, Payal Ghule </li>
+<li> UI Wireframes : Payal Ghule, Sindhana Krishnamurthy</li>
+<li> Sprint artifacts, Documentation & Diagrams : Sindhana Krishnamurthy</li>
+<li> Unit, Functional and Regression Testing : All </li> 
+
+<h2> Quick Links </h2>
+<li> <a href = "https://github.com/gopinathsjsu/team-project-allstars/projects/1">Project Task Board</a></li>
+<li> <a href = "https://github.com/gopinathsjsu/team-project-allstars/projects/2">Project Journal</a></li>
+<li> <a href = "https://github.com/gopinathsjsu/team-project-allstars/tree/main/Scrum%20Task%20Sheet">Weekly Task Sheet on github </a> along with <a href = "https://docs.google.com/spreadsheets/d/1lXu_UX6tzUNtIBW__bFTrZFKkbG6pOCg/edit#gid=1525492527"> Google Link </a></li>
+
 <h2> Technologies Used </h2>
 <li> <b>Frontend </b>: HTML, CSS, React.js, Javascript, Bootstrap</li>
 <li> <b>Backend </b> : Javascript, Node.js, Express.js, MongoDB (Database)</li>
